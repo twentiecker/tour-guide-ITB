@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                                 .show()
                         }
                     } else {
-                        Toast.makeText(this@LoginActivity, "iki ta ${response.message()}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT).show()
                     }
                 }
 
