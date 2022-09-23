@@ -5,7 +5,15 @@
       <map>
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/bg_button.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/bg_button_disable.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/coba.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_capture.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_place_holder.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_switch_camera.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_add_story.xml" value="0.22826086956521738" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_camera.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
