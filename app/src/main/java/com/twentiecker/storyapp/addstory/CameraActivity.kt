@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.addstory
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -77,7 +77,7 @@ class CameraActivity : AppCompatActivity() {
                         "isBackCamera",
                         cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
                     )
-                    setResult(AddStory.CAMERA_X_RESULT, intent)
+                    setResult(AddStoryActivity.CAMERA_X_RESULT, intent)
                     finish()
                 }
             }

@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.addstory
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
 
-class AddStory : AppCompatActivity() {
+class AddStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddStoryBinding
 
     companion object {
@@ -87,7 +87,7 @@ class AddStory : AppCompatActivity() {
 
         createCustomTempFile(application).also {
             val photoURI: Uri = FileProvider.getUriForFile(
-                this@AddStory,
+                this@AddStoryActivity,
                 "com.twentiecker.storyapp",
                 it
             )
@@ -127,17 +127,17 @@ class AddStory : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         if (responseBody != null && !responseBody.error) {
-                            Toast.makeText(this@AddStory, responseBody.message, Toast.LENGTH_SHORT)
+                            Toast.makeText(this@AddStoryActivity, responseBody.message, Toast.LENGTH_SHORT)
                                 .show()
                         }
                     } else {
-                        Toast.makeText(this@AddStory, response.message(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AddStoryActivity, response.message(), Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
                     Toast.makeText(
-                        this@AddStory,
+                        this@AddStoryActivity,
                         "Silakan masukkan berkas gambar terlebih dahulu.",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -194,7 +194,7 @@ class AddStory : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            val myFile = uriToFile(selectedImg, this@AddStory)
+            val myFile = uriToFile(selectedImg, this@AddStoryActivity)
             getFile = myFile
             binding.previewImageView.setImageURI(selectedImg)
         }

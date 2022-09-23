@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.custom
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import com.twentiecker.storyapp.R
 
 class MyButton : AppCompatButton {
     private lateinit var enabledBackground: Drawable
@@ -43,6 +44,7 @@ class MyButton : AppCompatButton {
         setTextColor(txtColor)
         textSize = 12f
         gravity = Gravity.CENTER
-        text = if (isEnabled) "Sign in" else "Enter Your Credentials"
+        text = "Enter Your Credentials".takeIf { !isEnabled }
+//        text = if (!isEnabled) "Enter Your Credentials" else null
     }
 }

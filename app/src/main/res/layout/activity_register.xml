@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".authentication.register.RegisterActivity">
 
-    <com.twentiecker.storyapp.MyEditText
+    <com.twentiecker.storyapp.custom.MyEditText
         android:id="@+id/ed_register_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.twentiecker.storyapp.MyEditText
+    <com.twentiecker.storyapp.custom.MyEditText
         android:id="@+id/ed_register_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_register_name" />
 
-    <com.twentiecker.storyapp.MyEditText
+    <com.twentiecker.storyapp.custom.MyEditText
         android:id="@+id/ed_register_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_register_email" />
 
-    <com.twentiecker.storyapp.MyButton
+    <com.twentiecker.storyapp.custom.MyButton
         android:id="@+id/my_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

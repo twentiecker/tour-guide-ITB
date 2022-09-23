@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.addstory
 
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
