@@ -8,6 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -21,8 +22,9 @@ data class FileUploadResponse(
 )
 
 interface ApiService {
+    @Headers("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLUQ2bkZoNlE4MlBiT21FRk0iLCJpYXQiOjE2NjM5MDc2NTF9.7m436ENApR4-72l5-VeRd-WHxR3YagvHiuGhyFVNc8s")
     @Multipart
-    @POST("/v1/stories/guest")
+    @POST("stories")
     fun uploadImage(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody
@@ -34,7 +36,7 @@ class ApiConfig {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
-        val retrofit = Retrofit.Builder().baseUrl("https://story-api.dicoding.dev/")
+        val retrofit = Retrofit.Builder().baseUrl("https://story-api.dicoding.dev/v1/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
