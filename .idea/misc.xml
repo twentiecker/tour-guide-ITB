@@ -6,18 +6,20 @@
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/bg_button.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/bg_button_disable.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/coba.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/edit_text_border.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_capture.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_place_holder.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/ic_switch_camera.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_add_story.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_camera.xml" value="0.22826086956521738" />
+        <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_list_story.xml" value="0.11302083333333333" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
