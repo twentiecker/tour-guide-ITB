@@ -23,12 +23,11 @@
     <ImageView
         android:id="@+id/previewImageView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cameraButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,10 +41,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/camera"
-        app:layout_constraintBottom_toTopOf="@+id/uploadButton"
         app:layout_constraintEnd_toStartOf="@+id/galleryButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cameraXButton" />
+        app:layout_constraintStart_toEndOf="@+id/cameraXButton"
+        app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
 
     <Button
         android:id="@+id/galleryButton"
@@ -59,8 +58,27 @@
         app:layout_constraintStart_toEndOf="@+id/cameraButton"
         app:layout_constraintTop_toTopOf="@+id/cameraButton" />
 
+    <EditText
+        android:id="@+id/ed_add_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:padding="10dp"
+        android:inputType="textMultiLine"
+        android:hint="Description"
+        android:background="@drawable/edit_text_border"
+        android:gravity="top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintTop_toBottomOf="@+id/cameraButton"
+        />
+
     <Button
-        android:id="@+id/uploadButton"
+        android:id="@+id/button_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
