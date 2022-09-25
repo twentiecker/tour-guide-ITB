@@ -73,7 +73,7 @@ class AddStoryActivity : AppCompatActivity() {
         binding.cameraXButton.setOnClickListener { startCameraX() }
         binding.cameraButton.setOnClickListener { startTakePhoto() }
         binding.galleryButton.setOnClickListener { startGallery() }
-        binding.uploadButton.setOnClickListener { uploadImage() }
+        binding.buttonAdd.setOnClickListener { uploadImage() }
     }
 
     private fun startCameraX() {
@@ -109,8 +109,9 @@ class AddStoryActivity : AppCompatActivity() {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
 
-            val description =
-                "Ini adalah deksripsi gambar".toRequestBody("text/plain".toMediaType())
+            val description = binding.edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
+//            val description =
+//                "Ini adalah deksripsi gambar".toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "photo",
