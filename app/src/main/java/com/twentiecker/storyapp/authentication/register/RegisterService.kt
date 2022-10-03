@@ -30,7 +30,7 @@ interface RegisterService {
     ): Call<RegisterResponse>
 }
 
-// config
+// confg
 class RegisterConfig {
     fun getRegisterService(): RegisterService {
         val loggingInterceptor =
