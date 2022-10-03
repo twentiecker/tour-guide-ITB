@@ -44,7 +44,6 @@ class MyButton : AppCompatButton {
         setTextColor(txtColor)
         textSize = 12f
         gravity = Gravity.CENTER
-        text = "Enter Your Credentials".takeIf { !isEnabled }
-//        text = if (!isEnabled) "Enter Your Credentials" else null
+        text = if (isEnabled) "submit" else "Enter Your Credentials"
     }
 }
