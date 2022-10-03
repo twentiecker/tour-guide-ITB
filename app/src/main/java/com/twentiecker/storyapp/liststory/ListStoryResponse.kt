@@ -1,6 +1,8 @@
 package com.twentiecker.storyapp.liststory
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ListStoryResponse(
 	@field:SerializedName("listStory")
@@ -13,6 +15,7 @@ data class ListStoryResponse(
 	val message: String
 )
 
+@Parcelize
 data class ListStoryItem(
 	@field:SerializedName("photoUrl")
 	val photoUrl: String,
@@ -34,5 +37,5 @@ data class ListStoryItem(
 
 	@field:SerializedName("lat")
 	val lat: Double
-)
+) : Parcelable
 
