@@ -18,8 +18,8 @@ data class LoginResponse(
     @field:SerializedName("message")
     val message: String,
 
-    @field:SerializedName("login_result")
-    val loginResult: List<DataItem>
+    @field:SerializedName("loginResult")
+    val loginResult: DataItem
 )
 
 data class DataItem(
