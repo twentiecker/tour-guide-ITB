@@ -57,33 +57,33 @@ class ListStoryActivity : AppCompatActivity() {
 //        showRecyclerList()
 
         // Retrofit untuk fetch data
-        val service = ListStoryConfig.getListStoryService().getListStory(1)
-        service.enqueue(object : Callback<ListStoryResponse> {
-            override fun onResponse(
-                call: Call<ListStoryResponse>,
-                response: Response<ListStoryResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null && !responseBody.error) {
-                        showRecyclerList(responseBody.listStory)
-//                        Toast.makeText(this@ListStoryActivity, responseBody.message, Toast.LENGTH_SHORT)
-//                            .show()
-                    }
-                } else {
-                    Toast.makeText(this@ListStoryActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<ListStoryResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@ListStoryActivity,
-                    "Id tidak ditemukan",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+//        val service = ListStoryConfig.getListStoryService().getListStory(1)
+//        service.enqueue(object : Callback<ListStoryResponse> {
+//            override fun onResponse(
+//                call: Call<ListStoryResponse>,
+//                response: Response<ListStoryResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    val responseBody = response.body()
+//                    if (responseBody != null && !responseBody.error) {
+//                        showRecyclerList(responseBody.listStory)
+////                        Toast.makeText(this@ListStoryActivity, responseBody.message, Toast.LENGTH_SHORT)
+////                            .show()
+//                    }
+//                } else {
+//                    Toast.makeText(this@ListStoryActivity, response.message(), Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ListStoryResponse>, t: Throwable) {
+//                Toast.makeText(
+//                    this@ListStoryActivity,
+//                    "Id tidak ditemukan",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        })
     }
 
     private fun setupView() {
@@ -113,6 +113,8 @@ class ListStoryActivity : AppCompatActivity() {
                 finish()
             }
         })
+
+        mainViewModel.listStory.observe(this, { listStory -> showRecyclerList(listStory) })
     }
 
     private fun setupAction() {
