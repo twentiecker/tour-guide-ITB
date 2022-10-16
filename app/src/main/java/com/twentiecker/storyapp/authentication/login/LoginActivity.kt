@@ -118,7 +118,6 @@ class LoginActivity : AppCompatActivity() {
     private fun showUserData(userData: DataItem?) {
         Toast.makeText(this, userData.toString(), Toast.LENGTH_SHORT).show()
         if (userData != null) {
-//            loginViewModel.login()
             loginViewModel.saveUser(UserModel(userData.userId, userData.name, userData.token, true))
             val intent = Intent(this@LoginActivity, ListStoryActivity::class.java)
             intent.flags =
