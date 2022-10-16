@@ -24,13 +24,9 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
     private val _listStory = MutableLiveData<List<ListStoryItem>>()
     val listStory: LiveData<List<ListStoryItem>> = _listStory
 
-    init {
-        listStory("token")
-    }
-
     // retrofitnya
     fun listStory(token: String) {
-        val service = ListStoryConfig.getListStoryService().getListStory(token,1)
+        val service = ListStoryConfig.getListStoryService().getListStory(token, 1)
         service.enqueue(object : Callback<ListStoryResponse> {
             override fun onResponse(
                 call: Call<ListStoryResponse>,
