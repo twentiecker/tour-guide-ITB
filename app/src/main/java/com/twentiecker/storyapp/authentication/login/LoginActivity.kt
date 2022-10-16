@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
-//                if (edLoginPassword.length() < 6) edLoginPassword.error = "Password at least 6 characters"
+                // if (edLoginPassword.length() < 6) edLoginPassword.error = "Password at least 6 characters"
                 if (p0.length < 6) edLoginPassword.error = "Password at least 6 characters"
             }
 
@@ -87,47 +87,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-//        myButton.setOnClickListener {
-//            val email = edLoginEmail.text.toString()
-//            val pass = edLoginPassword.text.toString()
-//
-//            val service = LoginConfig().getLoginService().loginUser(email, pass)
-//            service.enqueue(object : Callback<LoginResponse> {
-//                override fun onResponse(
-//                    call: Call<LoginResponse>,
-//                    response: Response<LoginResponse>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val responseBody = response.body()
-//                        if (responseBody != null && !responseBody.error) {
-//                            Toast.makeText(
-//                                this@LoginActivity,
-//                                responseBody.message,
-//                                Toast.LENGTH_SHORT
-//                            )
-//                                .show()
-//                        }
-//                    } else {
-//                        Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                    Toast.makeText(
-//                        this@LoginActivity,
-//                        "Id tidak ditemukan",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            })
-//
-////            Toast.makeText(
-////                this@LoginActivity,
-////                "${edLoginEmail.text} and ${edLoginPassword.text}",
-////                Toast.LENGTH_SHORT
-////            ).show()
-//        }
     }
 
     private fun setupView() {
@@ -152,6 +111,21 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.getUser().observe(this, { user ->
             this.user = user
         })
+
+        loginViewModel.userData.observe(this, { userData -> showUserData(userData) })
+    }
+
+    private fun showUserData(userData: DataItem?) {
+        Toast.makeText(this, userData.toString(), Toast.LENGTH_SHORT).show()
+        if (userData != null) {
+//            loginViewModel.login()
+            loginViewModel.saveUser(UserModel(userData.userId, userData.name, userData.token, true))
+            val intent = Intent(this@LoginActivity, ListStoryActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupAction() {
@@ -165,25 +139,17 @@ class LoginActivity : AppCompatActivity() {
                 password.isEmpty() -> {
                     binding.edLoginPassword.error = "Masukkan password"
                 }
-                email != user.email -> {
-                    binding.edLoginEmail.error = "Email tidak sesuai"
-                }
-                password != user.password -> {
-                    binding.edLoginPassword.error = "Password tidak sesuai"
-                }
+//                email != user.email -> {
+//                    binding.edLoginEmail.error = "Email tidak sesuai"
+//                }
+//                password != user.password -> {
+//                    binding.edLoginPassword.error = "Password tidak sesuai"
+//                }
                 else -> {
-                    loginService(email, password)
-                    loginViewModel.login()
+                    loginViewModel.loginService(email, password)
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            val intent = Intent(context, ListStoryActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            finish()
-                        }
+                        setMessage("Anda berhasil login. Sedang memuat data...")
                         create()
                         show()
                     }
@@ -199,18 +165,18 @@ class LoginActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-//        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-//        val message = ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(500)
-//        val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
+        // val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
+        // val message = ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(500)
+        // val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
         val emailEditTextLayout =
             ObjectAnimator.ofFloat(binding.edLoginEmail, View.ALPHA, 1f).setDuration(500)
-//        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
+        // val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
         val passwordEditTextLayout =
             ObjectAnimator.ofFloat(binding.edLoginPassword, View.ALPHA, 1f).setDuration(500)
         val login = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {
-//            playSequentially(title, message, emailTextView, emailEditTextLayout, passwordTextView, passwordEditTextLayout, login)
+            // playSequentially(title, message, emailTextView, emailEditTextLayout, passwordTextView, passwordEditTextLayout, login)
             playSequentially(emailEditTextLayout, passwordEditTextLayout, login)
             startDelay = 500
         }.start()
@@ -256,10 +222,5 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-//            Toast.makeText(
-//                this@LoginActivity,
-//                "${edLoginEmail.text} and ${edLoginPassword.text}",
-//                Toast.LENGTH_SHORT
-//            ).show()
     }
 }
