@@ -67,7 +67,8 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
-                Toast.makeText(this@LoginActivity, p0.toString(), Toast.LENGTH_SHORT).show()
+                if (!p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) edLoginEmail.error =
+                    "Format email tidak sesuai"
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -147,7 +148,11 @@ class LoginActivity : AppCompatActivity() {
 //                }
                 else -> {
                     loginViewModel.loginService(email, password)
-                    Toast.makeText(this@LoginActivity, "Anda berhasil login. Sedang memuat data...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Anda berhasil login. Sedang memuat data...",
+                        Toast.LENGTH_SHORT
+                    ).show()
 //                    AlertDialog.Builder(this).apply {
 //                        setTitle("Yeah!")
 //                        setMessage("Anda berhasil login. Sedang memuat data...")
@@ -189,6 +194,7 @@ class LoginActivity : AppCompatActivity() {
         myButton.isEnabled = email != null && email.toString()
             .isNotEmpty() && pass != null && pass.toString()
             .isNotEmpty() && edLoginPassword.length() > 5
+                && email.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
     }
 
     private fun loginService(email: String, pass: String) {
