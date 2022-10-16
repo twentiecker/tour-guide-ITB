@@ -36,9 +36,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class ListStoryActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityListStoryBinding
-
     private lateinit var rvHeroes: RecyclerView
-//    private val list = ArrayList<Story>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,37 +51,6 @@ class ListStoryActivity : AppCompatActivity() {
         // recyler view
         rvHeroes = findViewById(R.id.rv_heroes)
         rvHeroes.setHasFixedSize(true)
-//        list.addAll(listStories)
-//        showRecyclerList()
-
-        // Retrofit untuk fetch data
-//        val service = ListStoryConfig.getListStoryService().getListStory(1)
-//        service.enqueue(object : Callback<ListStoryResponse> {
-//            override fun onResponse(
-//                call: Call<ListStoryResponse>,
-//                response: Response<ListStoryResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val responseBody = response.body()
-//                    if (responseBody != null && !responseBody.error) {
-//                        showRecyclerList(responseBody.listStory)
-////                        Toast.makeText(this@ListStoryActivity, responseBody.message, Toast.LENGTH_SHORT)
-////                            .show()
-//                    }
-//                } else {
-//                    Toast.makeText(this@ListStoryActivity, response.message(), Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ListStoryResponse>, t: Throwable) {
-//                Toast.makeText(
-//                    this@ListStoryActivity,
-//                    "Id tidak ditemukan",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        })
     }
 
     private fun setupView() {
@@ -108,6 +75,7 @@ class ListStoryActivity : AppCompatActivity() {
         mainViewModel.getUser().observe(this, { user ->
             if (user.isLogin) {
                 binding.nameTextView.text = getString(R.string.greeting, user.name)
+                mainViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
@@ -152,16 +120,4 @@ class ListStoryActivity : AppCompatActivity() {
         rvHeroes.adapter = listStoryAdapter
     }
 
-//    private val listStories: ArrayList<Story>
-//        get() {
-//            val dataName = resources.getStringArray(R.array.data_name)
-//            val dataDescription = resources.getStringArray(R.array.data_description)
-//            val dataPhoto = resources.getStringArray(R.array.data_photo)
-//            val listStories = ArrayList<Story>()
-//            for (i in dataName.indices) {
-//                val story = Story(dataName[i], dataDescription[i], dataPhoto[i])
-//                listStories.add(story)
-//            }
-//            return listStories
-//        }
 }

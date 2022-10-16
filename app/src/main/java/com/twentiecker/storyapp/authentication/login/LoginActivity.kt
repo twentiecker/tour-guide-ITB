@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
+                Toast.makeText(this@LoginActivity, p0.toString(), Toast.LENGTH_SHORT).show()
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -146,12 +147,13 @@ class LoginActivity : AppCompatActivity() {
 //                }
                 else -> {
                     loginViewModel.loginService(email, password)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Anda berhasil login. Sedang memuat data...")
-                        create()
-                        show()
-                    }
+                    Toast.makeText(this@LoginActivity, "Anda berhasil login. Sedang memuat data...", Toast.LENGTH_SHORT).show()
+//                    AlertDialog.Builder(this).apply {
+//                        setTitle("Yeah!")
+//                        setMessage("Anda berhasil login. Sedang memuat data...")
+//                        create()
+//                        show()
+//                    }
                 }
             }
         }
