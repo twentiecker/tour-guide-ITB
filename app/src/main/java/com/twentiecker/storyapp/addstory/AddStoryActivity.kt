@@ -1,6 +1,7 @@
 package com.twentiecker.storyapp.addstory
 
 import android.Manifest
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.twentiecker.storyapp.databinding.ActivityAddStoryBinding
@@ -16,6 +17,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
+import com.twentiecker.storyapp.R
+import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.liststory.MainViewModel
+import com.twentiecker.storyapp.model.UserPreference
+import com.twentiecker.storyapp.welcome.WelcomeActivity
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -26,8 +36,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class AddStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddStoryBinding
+    private lateinit var addStoryViewModel: AddStoryViewModel
+    private var token: String = ""
 
     companion object {
         const val CAMERA_X_RESULT = 200
@@ -70,10 +84,31 @@ class AddStoryActivity : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
+
         binding.cameraXButton.setOnClickListener { startCameraX() }
         binding.cameraButton.setOnClickListener { startTakePhoto() }
         binding.galleryButton.setOnClickListener { startGallery() }
-        binding.buttonAdd.setOnClickListener { uploadImage() }
+        binding.buttonAdd.setOnClickListener {
+            setupViewModel()
+            uploadImage(token)
+        }
+    }
+
+    private fun setupViewModel() {
+        addStoryViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[AddStoryViewModel::class.java]
+
+        addStoryViewModel.getUser().observe(this, { user ->
+            if (user.isLogin) {
+                this.token = StringBuilder("Bearer ").append(user.token).toString()
+            } else {
+                startActivity(Intent(this, WelcomeActivity::class.java))
+                finish()
+            }
+        })
+
     }
 
     private fun startCameraX() {
@@ -105,11 +140,12 @@ class AddStoryActivity : AppCompatActivity() {
         launcherIntentGallery.launch(chooser)
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(token: String) {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
 
-            val description = binding.edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
+            val description =
+                binding.edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
 //            val description =
 //                "Ini adalah deksripsi gambar".toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
@@ -119,7 +155,8 @@ class AddStoryActivity : AppCompatActivity() {
                 requestImageFile
             )
 
-            val service = ApiConfig().getApiService().uploadImage(imageMultipart, description)
+            val service =
+                ApiConfig().getApiService().uploadImage(token, imageMultipart, description)
             service.enqueue(object : Callback<FileUploadResponse> {
                 override fun onResponse(
                     call: Call<FileUploadResponse>,
@@ -128,11 +165,20 @@ class AddStoryActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
                         if (responseBody != null && !responseBody.error) {
-                            Toast.makeText(this@AddStoryActivity, responseBody.message, Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                this@AddStoryActivity,
+                                responseBody.message,
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
+
                         }
                     } else {
-                        Toast.makeText(this@AddStoryActivity, response.message(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@AddStoryActivity,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
