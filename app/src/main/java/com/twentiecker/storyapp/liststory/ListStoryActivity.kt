@@ -19,8 +19,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.addstory.AddStoryActivity
+import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.databinding.ActivityListStoryBinding
 import com.twentiecker.storyapp.liststory.adapter.ListStoryAdapter
 //import com.twentiecker.storyapp.liststory.model.Story
@@ -51,6 +54,12 @@ class ListStoryActivity : AppCompatActivity() {
         // recyler view
         rvHeroes = findViewById(R.id.rv_heroes)
         rvHeroes.setHasFixedSize(true)
+
+        // floating action
+        val fab: FloatingActionButton = findViewById(R.id.fab_add_story)
+        fab.setOnClickListener { view ->
+            startActivity(Intent(this, AddStoryActivity::class.java))
+        }
     }
 
     private fun setupView() {
