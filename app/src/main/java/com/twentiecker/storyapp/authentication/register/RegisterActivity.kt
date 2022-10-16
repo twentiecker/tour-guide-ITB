@@ -178,7 +178,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 else -> {
                     registerService(name, email, password)
-                    signupViewModel.saveUser(UserModel(name, email, password, false))
+//                    signupViewModel.saveUser(UserModel(name, email, password, false))
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("Akunnya sudah jadi nih. Yuk, login dan belajar coding.")
