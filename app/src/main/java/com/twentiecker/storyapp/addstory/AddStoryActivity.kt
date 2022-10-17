@@ -1,6 +1,7 @@
 package com.twentiecker.storyapp.addstory
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,9 +22,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
-import com.twentiecker.storyapp.liststory.MainViewModel
+import com.twentiecker.storyapp.liststory.ListStoryActivity
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity
 import okhttp3.MediaType.Companion.toMediaType
@@ -31,9 +31,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.*
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -100,14 +97,14 @@ class AddStoryActivity : AppCompatActivity() {
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[AddStoryViewModel::class.java]
 
-        addStoryViewModel.getUser().observe(this, { user ->
+        addStoryViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
                 this.token = StringBuilder("Bearer ").append(user.token).toString()
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
-        })
+        }
 
     }
 
@@ -116,6 +113,7 @@ class AddStoryActivity : AppCompatActivity() {
         launcherIntentCameraX.launch(intent)
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun startTakePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.resolveActivity(packageManager)
@@ -146,8 +144,6 @@ class AddStoryActivity : AppCompatActivity() {
 
             val description =
                 binding.edAddDescription.text.toString().toRequestBody("text/plain".toMediaType())
-//            val description =
-//                "Ini adalah deksripsi gambar".toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "photo",
@@ -155,41 +151,21 @@ class AddStoryActivity : AppCompatActivity() {
                 requestImageFile
             )
 
-            val service =
-                ApiConfig().getApiService().uploadImage(token, imageMultipart, description)
-            service.enqueue(object : Callback<FileUploadResponse> {
-                override fun onResponse(
-                    call: Call<FileUploadResponse>,
-                    response: Response<FileUploadResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        if (responseBody != null && !responseBody.error) {
-                            Toast.makeText(
-                                this@AddStoryActivity,
-                                responseBody.message,
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+            addStoryViewModel.serviceUpload(token, imageMultipart, description)
+            addStoryViewModel.messageData.observe(this) { message ->
+                Toast.makeText(
+                    this@AddStoryActivity,
+                    message.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
 
-                        }
-                    } else {
-                        Toast.makeText(
-                            this@AddStoryActivity,
-                            response.message(),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+                val intent = Intent(this@AddStoryActivity, ListStoryActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            }
 
-                override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@AddStoryActivity,
-                        "Silakan masukkan berkas gambar terlebih dahulu.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
         } else {
             Toast.makeText(
                 this,
