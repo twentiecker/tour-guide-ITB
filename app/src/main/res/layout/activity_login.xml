@@ -14,14 +14,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal2"
-        app:srcCompat="@drawable/ic_undraw_sign_in_re_o58h" />
+        app:srcCompat="@drawable/ic_undraw_sign_in_re_o58h"
+        android:contentDescription="@string/image_login" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -37,7 +38,8 @@
         android:src="@drawable/ic_baseline_alternate_email_24"
         app:layout_constraintEnd_toStartOf="@+id/ed_login_email"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalStart"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        android:contentDescription="@string/image_email" />
 
     <com.twentiecker.storyapp.custom.MyEditText
         android:id="@+id/ed_login_email"
@@ -47,7 +49,7 @@
         android:layout_marginTop="20dp"
         android:alpha="0"
         android:gravity="start"
-        android:hint="Email"
+        android:hint="@string/email"
         app:layout_constraintEnd_toEndOf="@+id/guidelineVerticalEnd"
         app:layout_constraintStart_toEndOf="@id/image_login"
         app:layout_constraintTop_toBottomOf="@id/titleTextView" />
@@ -61,7 +63,8 @@
         android:src="@drawable/ic_baseline_lock_24"
         app:layout_constraintEnd_toStartOf="@+id/ed_login_password"
         app:layout_constraintStart_toStartOf="@+id/guidelineVerticalStart"
-        app:layout_constraintTop_toBottomOf="@+id/ed_login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_login_email"
+        android:contentDescription="@string/image_password" />
 
     <com.twentiecker.storyapp.custom.MyEditText
         android:id="@+id/ed_login_password"
@@ -71,7 +74,7 @@
         android:layout_marginTop="10dp"
         android:alpha="0"
         android:gravity="start"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/guidelineVerticalEnd"
         app:layout_constraintStart_toEndOf="@id/image_password"
@@ -105,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="New to StoryApp?"
+            android:text="@string/new_to_storyapp"
             android:textColor="@color/gray_500"
             android:textSize="16sp" />
 
@@ -114,13 +117,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="@color/blue"
             android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
@@ -184,6 +186,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_percent="0.9"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
