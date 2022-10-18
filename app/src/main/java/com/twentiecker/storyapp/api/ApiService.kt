@@ -1,5 +1,6 @@
 package com.twentiecker.storyapp.api
 
+import com.twentiecker.storyapp.model.RegisterResponse
 import com.twentiecker.storyapp.model.LoginResponse
 import com.twentiecker.storyapp.model.FileUploadResponse
 import okhttp3.MultipartBody
@@ -22,4 +23,12 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("register")
+    fun registerUser(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<RegisterResponse>
 }

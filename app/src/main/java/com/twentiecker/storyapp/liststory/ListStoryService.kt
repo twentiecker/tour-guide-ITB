@@ -1,6 +1,5 @@
 package com.twentiecker.storyapp.liststory
 
-import com.twentiecker.storyapp.authentication.register.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.*
 

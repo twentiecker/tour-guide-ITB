@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.addstory.AddStoryViewModel
 import com.twentiecker.storyapp.authentication.login.LoginViewModel
-import com.twentiecker.storyapp.authentication.register.SignupViewModel
+import com.twentiecker.storyapp.authentication.register.RegisterViewModel
 import com.twentiecker.storyapp.liststory.MainViewModel
 import com.twentiecker.storyapp.model.UserPreference
 
@@ -16,8 +16,8 @@ class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.New
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(pref) as T
             }
-            modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
-                SignupViewModel(pref) as T
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel() as T
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(pref) as T

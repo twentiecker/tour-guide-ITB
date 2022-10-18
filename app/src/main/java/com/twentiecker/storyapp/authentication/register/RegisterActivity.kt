@@ -3,6 +3,7 @@ package com.twentiecker.storyapp.authentication.register
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,28 +13,23 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.authentication.login.LoginActivity
 import com.twentiecker.storyapp.custom.MyButton
 import com.twentiecker.storyapp.custom.MyEditText
 import com.twentiecker.storyapp.databinding.ActivityRegisterBinding
-import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var signupViewModel: SignupViewModel
-
+    private lateinit var registerViewModel: RegisterViewModel
     private lateinit var myButton: MyButton
     private lateinit var edRegisterName: MyEditText
     private lateinit var edRegisterEmail: MyEditText
@@ -54,8 +50,6 @@ class RegisterActivity : AppCompatActivity() {
         edRegisterEmail = findViewById(R.id.ed_register_email)
         edRegisterPassword = findViewById(R.id.ed_register_password)
 
-        setMyButtonEnable()
-
         edRegisterName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
             }
@@ -74,6 +68,9 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
+                if (p0.isEmpty()) edRegisterEmail.error = "Masukkan email"
+                else if (!p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) edRegisterEmail.error =
+                    "Format email tidak sesuai"
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -86,59 +83,14 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
-//                if (edLoginPassword.length() < 6) edLoginPassword.error = "Password at least 6 characters"
-                if (p0.length < 6) edRegisterPassword.error = "Password at least 6 characters"
+                if (p0.isEmpty()) edRegisterPassword.error = "Masukkan password"
+                else if (p0.length in 1..5) edRegisterPassword.error =
+                    "Password at least 6 characters"
             }
 
             override fun afterTextChanged(p0: Editable) {
             }
         })
-
-//        myButton.setOnClickListener {
-//            val name = edRegisterName.text.toString()
-//            val email = edRegisterEmail.text.toString()
-//            val pass = edRegisterPassword.text.toString()
-//
-//            val service = RegisterConfig().getRegisterService().registerUser(name, email, pass)
-//            service.enqueue(object : Callback<RegisterResponse> {
-//                override fun onResponse(
-//                    call: Call<RegisterResponse>,
-//                    response: Response<RegisterResponse>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val responseBody = response.body()
-//                        if (responseBody != null && !responseBody.error) {
-//                            Toast.makeText(
-//                                this@RegisterActivity,
-//                                responseBody.message,
-//                                Toast.LENGTH_SHORT
-//                            )
-//                                .show()
-//                        }
-//                    } else {
-//                        Toast.makeText(
-//                            this@RegisterActivity,
-//                            response.message(),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-//                    Toast.makeText(
-//                        this@RegisterActivity,
-//                        "Id tidak ditemukan",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            })
-//
-////            Toast.makeText(
-////                this@LoginActivity,
-////                "${edLoginEmail.text} and ${edLoginPassword.text}",
-////                Toast.LENGTH_SHORT
-////            ).show()
-//        }
     }
 
     private fun setupView() {
@@ -155,10 +107,10 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        signupViewModel = ViewModelProvider(
+        registerViewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[SignupViewModel::class.java]
+        )[RegisterViewModel::class.java]
     }
 
     private fun setupAction() {
@@ -166,30 +118,20 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.edRegisterName.text.toString()
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
-            when {
-                name.isEmpty() -> {
-                    binding.edRegisterName.error = "Masukkan nama"
-                }
-                email.isEmpty() -> {
-                    binding.edRegisterEmail.error = "Masukkan email"
-                }
-                password.isEmpty() -> {
-                    binding.edRegisterPassword.error = "Masukkan password"
-                }
-                else -> {
-                    registerService(name, email, password)
-//                    signupViewModel.saveUser(UserModel(name, email, password, false))
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Akunnya sudah jadi nih. Yuk, login dan belajar coding.")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+            registerViewModel.registerService(name, email, password)
+            registerViewModel.messageData.observe(this) { message ->
+                if (message == "User created") {
+                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@RegisterActivity, "Email has been registered.", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        binding.messageLogin.setOnClickListener {
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -200,29 +142,31 @@ class RegisterActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-//        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-//        val nameTextView = ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(500)
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
+        val imgName = ObjectAnimator.ofFloat(binding.imageName, View.ALPHA, 1f).setDuration(500)
         val nameEditTextLayout =
             ObjectAnimator.ofFloat(binding.edRegisterName, View.ALPHA, 1f).setDuration(500)
-//        val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
+        val imgEmail = ObjectAnimator.ofFloat(binding.imageEmail, View.ALPHA, 1f).setDuration(500)
         val emailEditTextLayout =
             ObjectAnimator.ofFloat(binding.edRegisterEmail, View.ALPHA, 1f).setDuration(500)
-//        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
+        val imgPassword =
+            ObjectAnimator.ofFloat(binding.imagePassword, View.ALPHA, 1f).setDuration(500)
         val passwordEditTextLayout =
             ObjectAnimator.ofFloat(binding.edRegisterPassword, View.ALPHA, 1f).setDuration(500)
-        val signup = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
-
+        val btnSignup = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
+        val message = ObjectAnimator.ofFloat(binding.linearMessage, View.ALPHA, 1f).setDuration(500)
 
         AnimatorSet().apply {
             playSequentially(
-//                title,
-//                nameTextView,
+                title,
+                imgName,
                 nameEditTextLayout,
-//                emailTextView,
+                imgEmail,
                 emailEditTextLayout,
-//                passwordTextView,
+                imgPassword,
                 passwordEditTextLayout,
-                signup
+                btnSignup,
+                message
             )
             startDelay = 500
         }.start()
@@ -237,38 +181,6 @@ class RegisterActivity : AppCompatActivity() {
             .isNotEmpty() && email != null && email.toString()
             .isNotEmpty() && pass != null && pass.toString()
             .isNotEmpty() && edRegisterPassword.length() > 5
-    }
-
-    private fun registerService(name: String, email: String, pass: String) {
-        val service = RegisterConfig().getRegisterService().registerUser(name, email, pass)
-        service.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(
-                call: Call<RegisterResponse>,
-                response: Response<RegisterResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null && !responseBody.error) {
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            responseBody.message,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-                } else {
-                    Toast.makeText(this@RegisterActivity, response.message(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Id tidak ditemukan",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+                && email.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
     }
 }
