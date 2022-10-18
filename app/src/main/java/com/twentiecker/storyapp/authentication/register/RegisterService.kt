@@ -1,7 +1,6 @@
 package com.twentiecker.storyapp.authentication.register
 
 import com.google.gson.annotations.SerializedName
-import com.twentiecker.storyapp.authentication.login.LoginResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call

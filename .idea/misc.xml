@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/bg_button.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/bg_button_disable.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.124" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.124" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/layout/activity_list_story.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/app/src/main/res/drawable/bg_button.xml" value="0.2" />

@@ -1,8 +1,9 @@
 package com.twentiecker.storyapp.authentication.login
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
+import com.twentiecker.storyapp.api.ApiConfig
+import com.twentiecker.storyapp.model.DataItem
+import com.twentiecker.storyapp.model.LoginResponse
 import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference
 import kotlinx.coroutines.launch
@@ -11,6 +12,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginViewModel(private val pref: UserPreference) : ViewModel() {
+    private val _userData = MutableLiveData<DataItem>()
+    val userData: LiveData<DataItem> = _userData
+    private val _message = MutableLiveData<String>()
+    val messageData: LiveData<String> = _message
+
     fun getUser(): LiveData<UserModel> {
         return pref.getUser().asLiveData()
     }
@@ -27,11 +33,8 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
         }
     }
 
-    private val _userData = MutableLiveData<DataItem>()
-    val userData: LiveData<DataItem> = _userData
-
     fun loginService(email: String, pass: String) {
-        val service = LoginConfig().getLoginService().loginUser(email, pass)
+        val service = ApiConfig().getApiService().loginUser(email, pass)
         service.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,
@@ -40,45 +43,17 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null && !responseBody.error) {
-//                        Toast.makeText(
-//                            this@LoginActivity,
-//                            responseBody.message,
-//                            Toast.LENGTH_SHORT
-//                        )
-//                            .show()
+                        _message.value = responseBody.message
                         _userData.value = responseBody.loginResult
-                        Log.v("userData", responseBody.loginResult.toString())
-//                        saveUser(
-//                            UserModel(
-//                                userData.value?.userId ?:"" ,
-//                                userData.value?.name ?: "",
-//                                userData.value?.token ?: "",
-//                                true
-//                            )
-//                        )
-//                        login()
                     }
                 } else {
-//                    Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_SHORT)
-//                        .show()
-                    Log.v("userData", "gagal ambil data")
+                    _message.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                Toast.makeText(
-//                    this@LoginActivity,
-//                    "Id tidak ditemukan",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-                Log.v("userData", "id tidak ditemukan")
+                _message.value = "Id tidak ditemukan"
             }
         })
-
-//            Toast.makeText(
-//                this@LoginActivity,
-//                "${edLoginEmail.text} and ${edLoginPassword.text}",
-//                Toast.LENGTH_SHORT
-//            ).show()
     }
 }
