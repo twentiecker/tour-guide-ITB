@@ -14,6 +14,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
@@ -91,6 +92,7 @@ class AddStoryActivity : AppCompatActivity() {
         binding.cameraButton.setOnClickListener { startTakePhoto() }
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.buttonAdd.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             setupViewModel()
             uploadImage(token)
         }
@@ -155,22 +157,34 @@ class AddStoryActivity : AppCompatActivity() {
                 requestImageFile
             )
 
-            addStoryViewModel.serviceUpload(token, imageMultipart, description)
-            addStoryViewModel.messageData.observe(this) { message ->
+            if (binding.edAddDescription.text.isNotEmpty()) {
+                addStoryViewModel.serviceUpload(token, imageMultipart, description)
+                addStoryViewModel.messageData.observe(this) { message ->
+                    Toast.makeText(
+                        this@AddStoryActivity,
+                        message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    binding.progressBar.visibility = View.INVISIBLE
+
+                    val intent = Intent(this@AddStoryActivity, ListStoryActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+            } else {
+                binding.progressBar.visibility = View.INVISIBLE
                 Toast.makeText(
                     this@AddStoryActivity,
-                    message.toString(),
+                    "Deskripsi tidak boleh kosong",
                     Toast.LENGTH_SHORT
                 ).show()
-
-                val intent = Intent(this@AddStoryActivity, ListStoryActivity::class.java)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
             }
 
         } else {
+            binding.progressBar.visibility = View.INVISIBLE
             Toast.makeText(
                 this,
                 "Silakan masukkan berkas gambar terlebih dahulu.",
@@ -205,12 +219,10 @@ class AddStoryActivity : AppCompatActivity() {
             val myFile = File(currentPhotoPath)
             getFile = myFile
 
-            val result = BitmapFactory.decodeFile(myFile.path)
-//            Silakan gunakan kode ini jika mengalami perubahan rotasi
-//            val result = rotateBitmap(
-//                BitmapFactory.decodeFile(myFile.path),
-//                true
-//            )
+            val result = rotateBitmap(
+                BitmapFactory.decodeFile(myFile.path),
+                true
+            )
 
             binding.previewImageView.setImageBitmap(result)
         }

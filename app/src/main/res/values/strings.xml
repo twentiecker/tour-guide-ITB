@@ -32,4 +32,10 @@
     <string name="submit">Submit</string>
     <string name="credential">Enter Your Credentials</string>
     <string name="image_user">Image User</string>
+    <string name="image_story">Image Story</string>
+    <string name="add_story_floating_button">Add Story Floating Button</string>
+    <string name="image_preview">Image Preview</string>
+    <string name="description">Description</string>
+    <string name="selfie_mode">Selfie Mode</string>
+    <string name="camera_shutter">Camera Shutter</string>
 </resources>
