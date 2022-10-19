@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp.liststory
+package com.twentiecker.storyapp.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

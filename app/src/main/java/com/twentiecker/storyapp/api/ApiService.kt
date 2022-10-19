@@ -1,5 +1,6 @@
 package com.twentiecker.storyapp.api
 
+import com.twentiecker.storyapp.model.ListStoryResponse
 import com.twentiecker.storyapp.model.RegisterResponse
 import com.twentiecker.storyapp.model.LoginResponse
 import com.twentiecker.storyapp.model.FileUploadResponse
@@ -31,4 +32,10 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<RegisterResponse>
+
+    @GET("stories")
+    fun getListStory(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int
+    ): Call<ListStoryResponse>
 }

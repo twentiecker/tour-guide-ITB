@@ -19,15 +19,14 @@
 
         <ImageView
             android:id="@+id/profileImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_undraw_male_avatar_re_8fid"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameTextView"
@@ -36,25 +35,37 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/profileImageView"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/profileImageView"
             card_view:layout_constraintTop_toTopOf="@+id/profileImageView"
-            tools:text="Nama Pahlawan" />
+            tools:text="Nama User" />
 
         <TextView
             android:id="@+id/descTextView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="5"
+            android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/profileImageView"
             card_view:layout_constraintEnd_toEndOf="@+id/nameTextView"
             card_view:layout_constraintStart_toStartOf="@+id/nameTextView"
             card_view:layout_constraintTop_toBottomOf="@+id/nameTextView"
             card_view:layout_constraintVertical_bias="0.0"
             tools:text="Deskripsi" />
+
+        <ImageView
+            android:id="@+id/image_story"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/descTextView"
+            card_view:layout_constraintStart_toStartOf="@+id/profileImageView"
+            card_view:layout_constraintTop_toBottomOf="@+id/descTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

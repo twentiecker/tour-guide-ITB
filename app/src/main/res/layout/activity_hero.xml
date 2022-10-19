@@ -7,15 +7,16 @@
     tools:context=".liststory.StoryActivity">
 
     <ImageView
-        android:id="@+id/profileImageView"
+        android:id="@+id/image_story"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="32dp"
-        android:transitionName="profile"
+        android:transitionName="photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_place_holder" />
+        tools:srcCompat="@drawable/ic_place_holder"
+        android:contentDescription="@string/image_user" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -28,8 +29,8 @@
         android:transitionName="name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView"
-        tools:text="Nama Pahlawan" />
+        app:layout_constraintTop_toBottomOf="@+id/image_story"
+        tools:text="Nama User" />
 
     <TextView
         android:id="@+id/descTextView"
