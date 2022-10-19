@@ -45,6 +45,7 @@ class ListStoryActivity : AppCompatActivity() {
         val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
+        binding.progressBar.visibility = View.VISIBLE
         setupViewModel()
         playAnimation()
 
@@ -95,6 +96,7 @@ class ListStoryActivity : AppCompatActivity() {
 
         listStoryViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
         listStoryViewModel.messageData.observe(this) { message ->
+            binding.progressBar.visibility = View.INVISIBLE
             Toast.makeText(
                 this@ListStoryActivity,
                 message.toString(),
