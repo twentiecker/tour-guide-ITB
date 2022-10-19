@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.addstory.AddStoryViewModel
 import com.twentiecker.storyapp.authentication.login.LoginViewModel
 import com.twentiecker.storyapp.authentication.register.RegisterViewModel
-import com.twentiecker.storyapp.liststory.MainViewModel
+import com.twentiecker.storyapp.liststory.ListStoryViewModel
 import com.twentiecker.storyapp.model.UserPreference
 
 class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {
@@ -13,8 +13,8 @@ class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.New
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
-                MainViewModel(pref) as T
+            modelClass.isAssignableFrom(ListStoryViewModel::class.java) -> {
+                ListStoryViewModel(pref) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel() as T

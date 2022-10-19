@@ -32,7 +32,7 @@ import com.twentiecker.storyapp.welcome.WelcomeActivity
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class ListStoryActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var listStoryViewModel: ListStoryViewModel
     private lateinit var binding: ActivityListStoryBinding
     private lateinit var rvHeroes: RecyclerView
 
@@ -66,7 +66,7 @@ class ListStoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
-                mainViewModel.logout()
+                listStoryViewModel.logout()
                 true
             }
             R.id.language -> {
@@ -79,22 +79,22 @@ class ListStoryActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        mainViewModel = ViewModelProvider(
+        listStoryViewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[MainViewModel::class.java]
+        )[ListStoryViewModel::class.java]
 
-        mainViewModel.getUser().observe(this) { user ->
+        listStoryViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                mainViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
+                listStoryViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
         }
 
-        mainViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
-        mainViewModel.messageData.observe(this) { message ->
+        listStoryViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
+        listStoryViewModel.messageData.observe(this) { message ->
             Toast.makeText(
                 this@ListStoryActivity,
                 message.toString(),

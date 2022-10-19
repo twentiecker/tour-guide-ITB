@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(private val pref: UserPreference) : ViewModel() {
+class ListStoryViewModel(private val pref: UserPreference) : ViewModel() {
     private val _message = MutableLiveData<String>()
     val messageData: LiveData<String> = _message
 
