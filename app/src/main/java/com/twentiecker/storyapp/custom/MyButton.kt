@@ -47,13 +47,12 @@ class MyButton : AppCompatButton {
             setTextColor(txtColor)
             textSize = 18f
             gravity = Gravity.CENTER
+            setText(R.string.submit)
         } else {
             setTextColor(disabletxtColor)
             textSize = 18f
             gravity = Gravity.CENTER
+            setText(R.string.credential)
         }
-
-        text = if (isEnabled) "Submit" else "Enter Your Credentials"
-
     }
 }
