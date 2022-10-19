@@ -64,7 +64,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         AnimatorSet().apply {
             playSequentially(title, subtitle, login, signup)
-            start()
-        }
+            startDelay = 500
+        }.start()
     }
 }
