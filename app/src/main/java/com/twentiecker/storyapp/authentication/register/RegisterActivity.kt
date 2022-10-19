@@ -115,11 +115,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.myButton.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             val name = binding.edRegisterName.text.toString()
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
             registerViewModel.registerService(name, email, password)
             registerViewModel.messageData.observe(this) { message ->
+                binding.progressBar.visibility = View.INVISIBLE
                 if (message == "User created") {
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
