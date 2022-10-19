@@ -32,4 +32,5 @@
     <string name="to_storyapp">di StoryApp</string>
     <string name="submit">Kirim</string>
     <string name="credential">Masukkan Kredensial Anda</string>
+    <string name="image_user">Gambar Pengguna</string>
 </resources>
