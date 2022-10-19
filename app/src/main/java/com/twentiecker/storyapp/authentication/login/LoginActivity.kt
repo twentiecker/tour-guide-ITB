@@ -153,13 +153,19 @@ class LoginActivity : AppCompatActivity() {
         val message =
             ObjectAnimator.ofFloat(binding.linearMessage, View.ALPHA, 1f).setDuration(500)
 
+        val setEmail = AnimatorSet().apply {
+            playTogether(imgLogin, emailEditTextLayout)
+        }
+
+        val setPassword = AnimatorSet().apply {
+            playTogether(imgPassword, passwordEditTextLayout)
+        }
+
         AnimatorSet().apply {
             playSequentially(
                 title,
-                imgLogin,
-                emailEditTextLayout,
-                imgPassword,
-                passwordEditTextLayout,
+                setEmail,
+                setPassword,
                 buttonLogin,
                 message
             )
