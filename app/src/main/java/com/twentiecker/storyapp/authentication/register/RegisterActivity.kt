@@ -156,15 +156,24 @@ class RegisterActivity : AppCompatActivity() {
         val btnSignup = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
         val message = ObjectAnimator.ofFloat(binding.linearMessage, View.ALPHA, 1f).setDuration(500)
 
+        val setName = AnimatorSet().apply {
+            playTogether(imgName, nameEditTextLayout)
+        }
+
+        val setEmail = AnimatorSet().apply {
+            playTogether(imgEmail, emailEditTextLayout)
+        }
+
+        val setPassword = AnimatorSet().apply {
+            playTogether(imgPassword, passwordEditTextLayout)
+        }
+
         AnimatorSet().apply {
             playSequentially(
                 title,
-                imgName,
-                nameEditTextLayout,
-                imgEmail,
-                emailEditTextLayout,
-                imgPassword,
-                passwordEditTextLayout,
+                setName,
+                setEmail,
+                setPassword,
                 btnSignup,
                 message
             )
