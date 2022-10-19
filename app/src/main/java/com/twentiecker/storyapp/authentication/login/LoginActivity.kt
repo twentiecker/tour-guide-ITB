@@ -119,10 +119,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.myButton.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
             loginViewModel.loginService(email, password)
             loginViewModel.messageData.observe(this) { message ->
+                binding.progressBar.visibility = View.INVISIBLE
                 Toast.makeText(this@LoginActivity, message.toString(), Toast.LENGTH_SHORT)
                     .show()
             }
