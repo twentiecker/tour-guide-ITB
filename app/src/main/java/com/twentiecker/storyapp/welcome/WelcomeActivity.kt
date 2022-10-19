@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.authentication.login.LoginActivity
 import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.databinding.ActivityWelcomeBinding
@@ -57,16 +56,14 @@ class WelcomeActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
+        val subtitle =
+            ObjectAnimator.ofFloat(binding.subtitleTextView, View.ALPHA, 1f).setDuration(500)
         val login = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(500)
         val signup = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(500)
-        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-
-        val together = AnimatorSet().apply {
-            playTogether(login, signup)
-        }
 
         AnimatorSet().apply {
-            playSequentially(title, together)
+            playSequentially(title, subtitle, login, signup)
             start()
         }
     }
