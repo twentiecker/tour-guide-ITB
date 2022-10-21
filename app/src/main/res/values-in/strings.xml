@@ -24,6 +24,7 @@
     <string name="empty_text">TIDAK ADA DATA</string>
     <string name="menu_1">Language</string>
     <string name="menu_2">Logout</string>
+    <string name="menu_3">Maps</string>
     <string name="welcome">Selamat Datang</string>
     <string name="to_storyapp">di StoryApp</string>
     <string name="submit">Kirim</string>

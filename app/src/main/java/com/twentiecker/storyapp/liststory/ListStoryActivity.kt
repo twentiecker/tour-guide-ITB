@@ -25,6 +25,7 @@ import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.addstory.AddStoryActivity
 import com.twentiecker.storyapp.databinding.ActivityListStoryBinding
+import com.twentiecker.storyapp.maps.MapsActivity
 import com.twentiecker.storyapp.model.ListStoryItem
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity
@@ -72,6 +73,11 @@ class ListStoryActivity : AppCompatActivity() {
             }
             R.id.language -> {
                 val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(intent)
+                true
+            }
+            R.id.map -> {
+                val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
                 true
             }
