@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.twentiecker.storyapp.R
 
 class MyEditText : AppCompatEditText, View.OnTouchListener {
@@ -41,16 +42,8 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
             ContextCompat.getDrawable(context, R.drawable.ic_baseline_close_24) as Drawable
         setOnTouchListener(this)
 
-        addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-                if (p0.toString().isNotEmpty()) showClearButton() else hideClearButton()
-            }
-
-            override fun afterTextChanged(p0: Editable) {
-            }
+        addTextChangedListener(onTextChanged = { p0, _, _, _ ->
+            if (p0.toString().isNotEmpty()) showClearButton() else hideClearButton()
         })
     }
 

@@ -34,4 +34,10 @@
     <string name="description">Description</string>
     <string name="selfie_mode">Selfie Mode</string>
     <string name="camera_shutter">Camera Shutter</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="image_widget">Image Widget</string>
 </resources>

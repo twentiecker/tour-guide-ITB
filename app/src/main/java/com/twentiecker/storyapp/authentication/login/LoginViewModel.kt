@@ -34,7 +34,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
     }
 
     fun loginService(email: String, pass: String) {
-        val service = ApiConfig().getApiService().loginUser(email, pass)
+        val service = ApiConfig.getApiService().loginUser(email, pass)
         service.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,

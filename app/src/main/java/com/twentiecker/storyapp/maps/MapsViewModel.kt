@@ -1,17 +1,19 @@
-package com.twentiecker.storyapp.liststory
+package com.twentiecker.storyapp.maps
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.twentiecker.storyapp.api.ApiConfig
 import com.twentiecker.storyapp.model.ListStoryItem
 import com.twentiecker.storyapp.model.ListStoryResponse
 import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListStoryViewModel(private val pref: UserPreference) : ViewModel() {
+class MapsViewModel(private val pref: UserPreference) : ViewModel() {
     private val _message = MutableLiveData<String>()
     val messageData: LiveData<String> = _message
     private val _listStory = MutableLiveData<List<ListStoryItem>>()
@@ -21,14 +23,8 @@ class ListStoryViewModel(private val pref: UserPreference) : ViewModel() {
         return pref.getUser().asLiveData()
     }
 
-    fun logout() {
-        viewModelScope.launch {
-            pref.logout()
-        }
-    }
-
-    fun listStory(token: String) {
-        val service = ApiConfig.getApiService().getListStory(token, 1)
+    fun listMaps(token: String) {
+        val service = ApiConfig.getApiService().getListMaps(token, 1, 1)
         service.enqueue(object : Callback<ListStoryResponse> {
             override fun onResponse(
                 call: Call<ListStoryResponse>,

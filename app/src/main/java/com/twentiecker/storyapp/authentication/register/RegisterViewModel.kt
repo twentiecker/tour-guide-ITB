@@ -14,7 +14,7 @@ class RegisterViewModel : ViewModel() {
     val messageData: LiveData<String> = _message
 
     fun registerService(name: String, email: String, pass: String) {
-        val service = ApiConfig().getApiService().registerUser(name, email, pass)
+        val service = ApiConfig.getApiService().registerUser(name, email, pass)
         service.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
                 call: Call<RegisterResponse>,

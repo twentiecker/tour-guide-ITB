@@ -38,4 +38,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("page") page: Int
     ): Call<ListStoryResponse>
+
+    @GET("stories")
+    fun getListMaps(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("location") location: Int
+    ): Call<ListStoryResponse>
 }
