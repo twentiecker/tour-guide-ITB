@@ -14,7 +14,7 @@ object ApiConfig {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         }
         val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
-        val retrofit = Retrofit.Builder().baseUrl("https://story-api.dicoding.dev/v1/")
+        val retrofit = Retrofit.Builder().baseUrl(com.twentiecker.storyapp.BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
