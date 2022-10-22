@@ -5,18 +5,26 @@
       <map>
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/bg_button.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/bg_button_disable.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/edit_text_border.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.124" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2015" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.124" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.2015" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_password_24.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_capture.xml" value="0.124" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_place_holder.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_switch_camera.xml" value="0.124" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_business_deal_re_up4u.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_male_avatar_re_8fid.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_photo_album_re_31c2.xml" value="0.2015" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_polaroid_re_481f.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_sign_in_re_o58h.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/drawable/ic_undraw_welcoming_re_x0qo.xml" value="0.2015" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/layout/activity_add_story.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/layout/activity_camera.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android-project/android-story-app/app/src/main/res/layout/activity_hero.xml" value="0.22826086956521738" />

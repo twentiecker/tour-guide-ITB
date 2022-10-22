@@ -35,7 +35,7 @@
     <string name="description">Description</string>
     <string name="selfie_mode">Selfie Mode</string>
     <string name="camera_shutter">Camera Shutter</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">Story App</string>
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>
