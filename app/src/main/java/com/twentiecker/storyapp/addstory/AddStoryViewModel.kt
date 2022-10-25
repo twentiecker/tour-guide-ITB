@@ -22,9 +22,9 @@ class AddStoryViewModel(private val pref: UserPreference) : ViewModel() {
         return pref.getUser().asLiveData()
     }
 
-    fun serviceUpload(token: String, imageMultipart: MultipartBody.Part, description: RequestBody) {
+    fun serviceUpload(token: String, imageMultipart: MultipartBody.Part, description: RequestBody, lat: Float, lon: Float) {
         val service =
-            ApiConfig.getApiService().uploadImage(token, imageMultipart, description)
+            ApiConfig.getApiService().uploadImage(token, imageMultipart, description, lat, lon)
         service.enqueue(object : Callback<FileUploadResponse> {
             override fun onResponse(
                 call: Call<FileUploadResponse>,
