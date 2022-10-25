@@ -8,13 +8,13 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -30,6 +30,7 @@ import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.databinding.ActivityMapsBinding
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity
+import java.util.*
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -101,7 +102,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getMyLocation()
         addManyMarker()
-        setMapStyle()
+        setMap()
+    }
+
+    private fun setMap() {
+        val cal: Calendar = Calendar.getInstance()
+        cal.timeInMillis = System.currentTimeMillis()
+
+        cal.set(Calendar.HOUR_OF_DAY, 6)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+
+        val noonStart: Long = cal.timeInMillis
+
+        cal.set(Calendar.HOUR_OF_DAY, 18)
+        cal.set(Calendar.MINUTE, 0)
+
+        val noonEnd: Long = cal.timeInMillis
+        val now = System.currentTimeMillis()
+
+        if (now > noonStart && now < noonEnd) {
+            setMapStyle(R.raw.map_day)
+        } else {
+            setMapStyle(R.raw.map_night)
+        }
     }
 
     private val boundsBuilder = LatLngBounds.Builder()
@@ -139,17 +163,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
 
-    private fun setMapStyle() {
+    private fun setMapStyle(x: Int) {
         try {
             val success =
-                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, x))
             if (!success) {
-                Toast.makeText(this@MapsActivity, "Style parsing failed.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MapsActivity, "Style parsing failed.", Toast.LENGTH_SHORT)
+                    .show()
             }
         } catch (exception: Resources.NotFoundException) {
-            Toast.makeText(this@MapsActivity, "Can't find style. Error: $exception", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@MapsActivity,
+                "Can't find style. Error: $exception",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
+
 
     @SuppressLint("MissingPermission")
     private fun getMyLocation() {
