@@ -25,6 +25,7 @@ import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.addstory.AddStoryActivity
 import com.twentiecker.storyapp.databinding.ActivityListStoryBinding
+import com.twentiecker.storyapp.liststory.adapter.LoadingStateAdapter
 import com.twentiecker.storyapp.maps.MapsActivity
 import com.twentiecker.storyapp.model.ListStoryItem
 import com.twentiecker.storyapp.model.UserPreference
@@ -133,7 +134,11 @@ class ListStoryActivity : AppCompatActivity() {
         }
 
         val listStoryAdapter = ListStoryAdapter()
-        rvHeroes.adapter = listStoryAdapter
+        rvHeroes.adapter = listStoryAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                listStoryAdapter.retry()
+            }
+        )
         listStoryAdapter.submitData(lifecycle, list)
     }
 
