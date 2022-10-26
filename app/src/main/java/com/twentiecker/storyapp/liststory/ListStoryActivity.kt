@@ -10,13 +10,13 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.Settings
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -88,27 +88,31 @@ class ListStoryActivity : AppCompatActivity() {
     private fun setupViewModel() {
         listStoryViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore), this)
         )[ListStoryViewModel::class.java]
 
         listStoryViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
                 listStoryViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
+                    .observe(this) { listStory ->
+                        binding.progressBar.visibility = View.INVISIBLE
+                        showRecyclerList(listStory)
+                    }
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
         }
 
-        listStoryViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
-        listStoryViewModel.messageData.observe(this) { message ->
-            binding.progressBar.visibility = View.INVISIBLE
-            Toast.makeText(
-                this@ListStoryActivity,
-                message.toString(),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+//        listStoryViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
+//        listStoryViewModel.messageData.observe(this) { message ->
+//            binding.progressBar.visibility = View.INVISIBLE
+//            Toast.makeText(
+//                this@ListStoryActivity,
+//                message.toString(),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
     }
 
     private fun playAnimation() {
@@ -121,15 +125,16 @@ class ListStoryActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun showRecyclerList(list: List<ListStoryItem>) {
+    private fun showRecyclerList(list: PagingData<ListStoryItem>) {
         if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             rvHeroes.layoutManager = GridLayoutManager(this, 2)
         } else {
             rvHeroes.layoutManager = LinearLayoutManager(this)
         }
 
-        val listStoryAdapter = ListStoryAdapter(list)
+        val listStoryAdapter = ListStoryAdapter()
         rvHeroes.adapter = listStoryAdapter
+        listStoryAdapter.submitData(lifecycle, list)
     }
 
 }

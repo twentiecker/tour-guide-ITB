@@ -109,7 +109,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupViewModel() {
         registerViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore), this)
         )[RegisterViewModel::class.java]
     }
 

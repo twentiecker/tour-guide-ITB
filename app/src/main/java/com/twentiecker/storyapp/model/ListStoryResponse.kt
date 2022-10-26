@@ -1,10 +1,12 @@
 package com.twentiecker.storyapp.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class ListStoryResponse(
+class ListStoryResponse(
 	@field:SerializedName("listStory")
 	val listStory: List<ListStoryItem>,
 
@@ -16,6 +18,7 @@ data class ListStoryResponse(
 )
 
 @Parcelize
+@Entity(tableName = "story")
 data class ListStoryItem(
 	@field:SerializedName("photoUrl")
 	val photoUrl: String,
@@ -32,6 +35,7 @@ data class ListStoryItem(
 	@field:SerializedName("lon")
 	val lon: Double,
 
+	@PrimaryKey
 	@field:SerializedName("id")
 	val id: String,
 

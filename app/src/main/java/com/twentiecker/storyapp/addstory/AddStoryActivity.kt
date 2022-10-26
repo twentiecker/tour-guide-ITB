@@ -160,7 +160,7 @@ class AddStoryActivity : AppCompatActivity() {
     private fun setupViewModel() {
         addStoryViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore), this)
         )[AddStoryViewModel::class.java]
 
         addStoryViewModel.getUser().observe(this) { user ->

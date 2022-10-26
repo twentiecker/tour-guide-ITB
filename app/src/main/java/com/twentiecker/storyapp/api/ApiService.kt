@@ -36,10 +36,11 @@ interface ApiService {
     ): Call<RegisterResponse>
 
     @GET("stories")
-    fun getListStory(
+    suspend fun getListStory(
         @Header("Authorization") token: String,
-        @Query("page") page: Int
-    ): Call<ListStoryResponse>
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): ListStoryResponse
 
     @GET("stories")
     fun getListMaps(

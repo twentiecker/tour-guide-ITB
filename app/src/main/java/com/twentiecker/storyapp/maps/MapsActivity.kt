@@ -60,7 +60,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setupViewModel() {
         mapsViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
+            ViewModelFactory(UserPreference.getInstance(dataStore), this)
         )[MapsViewModel::class.java]
 
         mapsViewModel.getUser().observe(this) { user ->
