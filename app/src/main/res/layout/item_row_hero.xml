@@ -25,10 +25,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:contentDescription="@string/image_user"
             android:src="@drawable/ic_undraw_male_avatar_re_8fid"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/image_user" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nameTextView"
@@ -37,6 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/profileImageView"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -65,10 +66,10 @@
             android:layout_height="250dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
+            android:contentDescription="@string/image_story"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="@+id/descTextView"
             card_view:layout_constraintStart_toStartOf="@+id/profileImageView"
-            card_view:layout_constraintTop_toBottomOf="@+id/descTextView"
-            android:contentDescription="@string/image_story" />
+            card_view:layout_constraintTop_toBottomOf="@+id/descTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

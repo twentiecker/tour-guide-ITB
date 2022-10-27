@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp.liststory
+package com.twentiecker.storyapp.liststory.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.twentiecker.storyapp.R
+import com.twentiecker.storyapp.liststory.StoryActivity
 import com.twentiecker.storyapp.model.ListStoryItem
 
 class ListStoryAdapter :

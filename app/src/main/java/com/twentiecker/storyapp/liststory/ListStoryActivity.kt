@@ -25,6 +25,7 @@ import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.addstory.AddStoryActivity
 import com.twentiecker.storyapp.databinding.ActivityListStoryBinding
+import com.twentiecker.storyapp.liststory.adapter.ListStoryAdapter
 import com.twentiecker.storyapp.liststory.adapter.LoadingStateAdapter
 import com.twentiecker.storyapp.maps.MapsActivity
 import com.twentiecker.storyapp.model.ListStoryItem

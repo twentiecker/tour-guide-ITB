@@ -15,7 +15,6 @@ import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
