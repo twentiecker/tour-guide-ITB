@@ -11,6 +11,7 @@ import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.model.ListStoryItem
 
 class StoryActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hero)

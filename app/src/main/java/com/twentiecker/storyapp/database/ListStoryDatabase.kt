@@ -13,7 +13,6 @@ import com.twentiecker.storyapp.model.ListStoryItem
 )
 
 abstract class ListStoryDatabase : RoomDatabase() {
-    // G PAKE DAO KAYAK DI NEWS APP ???
 
     companion object {
         @Volatile

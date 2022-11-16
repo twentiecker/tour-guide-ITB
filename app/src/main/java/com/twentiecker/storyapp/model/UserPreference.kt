@@ -8,13 +8,14 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class UserPreference private constructor(private val dataStore: DataStore<Preferences>){
+class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
+
     fun getUser(): Flow<UserModel> {
         return dataStore.data.map { preferences ->
             UserModel(
-                preferences[USERID_KEY] ?:"",
-                preferences[NAME_KEY] ?:"",
-                preferences[TOKEN_KEY] ?:"",
+                preferences[USERID_KEY] ?: "",
+                preferences[NAME_KEY] ?: "",
+                preferences[TOKEN_KEY] ?: "",
                 preferences[STATE_KEY] ?: false
             )
         }

@@ -90,7 +90,7 @@ class ListStoryActivity : AppCompatActivity() {
     private fun setupViewModel() {
         listStoryViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore), this)
+            ViewModelFactory(UserPreference.getInstance(dataStore))
         )[ListStoryViewModel::class.java]
 
         listStoryViewModel.getUser().observe(this) { user ->
@@ -105,16 +105,6 @@ class ListStoryActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-//        listStoryViewModel.listStory.observe(this) { listStory -> showRecyclerList(listStory) }
-//        listStoryViewModel.messageData.observe(this) { message ->
-//            binding.progressBar.visibility = View.INVISIBLE
-//            Toast.makeText(
-//                this@ListStoryActivity,
-//                message.toString(),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
     }
 
     private fun playAnimation() {
@@ -142,5 +132,4 @@ class ListStoryActivity : AppCompatActivity() {
         )
         listStoryAdapter.submitData(lifecycle, list)
     }
-
 }

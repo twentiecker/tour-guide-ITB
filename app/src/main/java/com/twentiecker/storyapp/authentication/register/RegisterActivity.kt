@@ -19,6 +19,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.api.ApiResult
 import com.twentiecker.storyapp.authentication.login.LoginActivity
 import com.twentiecker.storyapp.custom.MyButton
 import com.twentiecker.storyapp.custom.MyEditText
@@ -56,6 +57,7 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
+                if (p0.isEmpty()) edRegisterName.error = "Masukkan nama"
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -109,26 +111,40 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupViewModel() {
         registerViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore), this)
+            ViewModelFactory(UserPreference.getInstance(dataStore))
         )[RegisterViewModel::class.java]
     }
 
     private fun setupAction() {
         binding.myButton.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
+
             val name = binding.edRegisterName.text.toString()
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
+
             registerViewModel.registerService(name, email, password)
-            registerViewModel.messageData.observe(this) { message ->
-                binding.progressBar.visibility = View.INVISIBLE
-                if (message == "User created") {
-                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@RegisterActivity, "Email has been registered.", Toast.LENGTH_SHORT).show()
+                .observe(this) { registerResult ->
+                    when (registerResult) {
+                        is ApiResult.Success -> {
+                            binding.progressBar.visibility = View.INVISIBLE
+                            Toast.makeText(this, registerResult.data.message, Toast.LENGTH_SHORT)
+                                .show()
+
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        }
+                        is ApiResult.Error -> {
+                            binding.progressBar.visibility = View.INVISIBLE
+                            Toast.makeText(this, registerResult.error, Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                        }
+                    }
                 }
-            }
         }
 
         binding.messageLogin.setOnClickListener {

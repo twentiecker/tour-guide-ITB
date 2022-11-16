@@ -6,34 +6,33 @@ import com.twentiecker.storyapp.model.LoginResponse
 import com.twentiecker.storyapp.model.FileUploadResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
     @Multipart
     @POST("stories")
-    fun uploadImage(
+    suspend fun uploadImage(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
         @Part("lat") lat: Float,
         @Part("lon") lon: Float
-    ): Call<FileUploadResponse>
+    ): FileUploadResponse
 
     @FormUrlEncoded
     @POST("login")
-    fun loginUser(
+    suspend fun loginUser(
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @FormUrlEncoded
     @POST("register")
-    fun registerUser(
+    suspend fun registerUser(
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @GET("stories")
     suspend fun getListStory(
@@ -43,9 +42,9 @@ interface ApiService {
     ): ListStoryResponse
 
     @GET("stories")
-    fun getListMaps(
+    suspend fun getListMaps(
         @Header("Authorization") token: String,
         @Query("page") page: Int,
         @Query("location") location: Int
-    ): Call<ListStoryResponse>
+    ): ListStoryResponse
 }

@@ -27,6 +27,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.api.ApiResult
 import com.twentiecker.storyapp.databinding.ActivityMapsBinding
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity
@@ -60,12 +61,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setupViewModel() {
         mapsViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore), this)
+            ViewModelFactory(UserPreference.getInstance(dataStore))
         )[MapsViewModel::class.java]
 
         mapsViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                mapsViewModel.listMaps(StringBuilder("Bearer ").append(user.token).toString())
+                addManyMarker(StringBuilder("Bearer ").append(user.token).toString())
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
@@ -101,7 +102,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         getMyLocation()
-        addManyMarker()
         setMap()
     }
 
@@ -121,7 +121,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val noonEnd: Long = cal.timeInMillis
         val now = System.currentTimeMillis()
 
-        if (now > noonStart && now < noonEnd) {
+        if ((now > noonStart) && (now < noonEnd)) {
             setMapStyle(R.raw.map_day)
         } else {
             setMapStyle(R.raw.map_night)
@@ -130,27 +130,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val boundsBuilder = LatLngBounds.Builder()
 
-    private fun addManyMarker() {
-        mapsViewModel.messageData.observe(this) { message ->
-            Toast.makeText(this@MapsActivity, message.toString(), Toast.LENGTH_SHORT).show()
-        }
+    private fun addManyMarker(token: String) {
+        mapsViewModel.listMaps(token).observe(this) { resultMaps ->
+            when (resultMaps) {
+                is ApiResult.Success -> {
+                    Toast.makeText(this, resultMaps.data.message, Toast.LENGTH_SHORT)
+                        .show()
 
-        mapsViewModel.listStory.observe(this) { listStory ->
-            listStory.forEach { tourism ->
-                val latLng = LatLng(tourism.lat, tourism.lon)
-                mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name))
-                boundsBuilder.include(latLng)
+                    resultMaps.data.listStory.forEach { tourism ->
+                        val latLng = LatLng(tourism.lat, tourism.lon)
+                        mMap.addMarker(MarkerOptions().position(latLng).title(tourism.name))
+                        boundsBuilder.include(latLng)
+                    }
+
+                    val bounds: LatLngBounds = boundsBuilder.build()
+                    mMap.animateCamera(
+                        CameraUpdateFactory.newLatLngBounds(
+                            bounds,
+                            resources.displayMetrics.widthPixels,
+                            resources.displayMetrics.heightPixels,
+                            300
+                        )
+                    )
+                }
+                is ApiResult.Error -> {
+                    Toast.makeText(this, resultMaps.error, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                }
             }
-
-            val bounds: LatLngBounds = boundsBuilder.build()
-            mMap.animateCamera(
-                CameraUpdateFactory.newLatLngBounds(
-                    bounds,
-                    resources.displayMetrics.widthPixels,
-                    resources.displayMetrics.heightPixels,
-                    300
-                )
-            )
         }
     }
 

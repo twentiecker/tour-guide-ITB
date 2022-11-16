@@ -21,7 +21,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\""
+            manifestPlaceholders = [MAPS_API_KEY: "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"]
+        }
         release {
+            buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\""
+            manifestPlaceholders = [MAPS_API_KEY: "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -68,6 +74,9 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:3.1.0"
 
     //mockito
+    testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1" //main coroutine rule
     testImplementation 'org.mockito:mockito-core:3.12.4'
     testImplementation 'org.mockito:mockito-inline:3.12.4'
+    testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
 }

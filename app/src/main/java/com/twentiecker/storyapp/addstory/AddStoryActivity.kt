@@ -19,7 +19,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.datastore.core.DataStore
@@ -29,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.api.ApiResult
 import com.twentiecker.storyapp.liststory.ListStoryActivity
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity
@@ -49,40 +49,10 @@ class AddStoryActivity : AppCompatActivity() {
     private var lon: Float = 0.0F
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this,
-                    "Tidak mendapatkan permission.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-        }
 
         val actionBar: ActionBar? = supportActionBar
         val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
@@ -134,8 +104,6 @@ class AddStoryActivity : AppCompatActivity() {
         ) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
-//                    Toast.makeText(this@AddStoryActivity, location.latitude.toString(), Toast.LENGTH_SHORT)
-//                        .show()
                     lat = location.latitude.toFloat()
                     lon = location.longitude.toFloat()
                 } else {
@@ -159,7 +127,7 @@ class AddStoryActivity : AppCompatActivity() {
     private fun setupViewModel() {
         addStoryViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore), this)
+            ViewModelFactory(UserPreference.getInstance(dataStore))
         )[AddStoryViewModel::class.java]
 
         addStoryViewModel.getUser().observe(this) { user ->
@@ -173,24 +141,40 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
+        if (checkPermission(Manifest.permission.CAMERA)) {
+            val intent = Intent(this, CameraActivity::class.java)
+            launcherIntentCameraX.launch(intent)
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.CAMERA
+                )
+            )
+        }
     }
 
     @SuppressLint("QueryPermissionsNeeded")
     private fun startTakePhoto() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(packageManager)
+        if (checkPermission(Manifest.permission.CAMERA)) {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.resolveActivity(packageManager)
 
-        createCustomTempFile(application).also {
-            val photoURI: Uri = FileProvider.getUriForFile(
-                this@AddStoryActivity,
-                "com.twentiecker.storyapp",
-                it
+            createCustomTempFile(application).also {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this@AddStoryActivity,
+                    "com.twentiecker.storyapp",
+                    it
+                )
+                currentPhotoPath = it.absolutePath
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                launcherIntentCamera.launch(intent)
+            }
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.CAMERA
+                )
             )
-            currentPhotoPath = it.absolutePath
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            launcherIntentCamera.launch(intent)
         }
     }
 
@@ -217,23 +201,39 @@ class AddStoryActivity : AppCompatActivity() {
 
             if (binding.edAddDescription.text.isNotEmpty()) {
                 addStoryViewModel.serviceUpload(token, imageMultipart, description, lat, lon)
-                addStoryViewModel.messageData.observe(this) { message ->
-                    Toast.makeText(
-                        this@AddStoryActivity,
-                        message.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    .observe(this) { addStoryResult ->
+                        when (addStoryResult) {
+                            is ApiResult.Success -> {
+                                binding.progressBar.visibility = View.INVISIBLE
+                                Toast.makeText(
+                                    this@AddStoryActivity,
+                                    addStoryResult.data.message,
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
 
-                    binding.progressBar.visibility = View.INVISIBLE
-
-                    val intent = Intent(this@AddStoryActivity, ListStoryActivity::class.java)
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
-                }
+                                val intent =
+                                    Intent(this@AddStoryActivity, ListStoryActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
+                            }
+                            is ApiResult.Error -> {
+                                binding.progressBar.visibility = View.INVISIBLE
+                                Toast.makeText(
+                                    this@AddStoryActivity,
+                                    addStoryResult.error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else -> {
+                            }
+                        }
+                    }
             } else {
                 binding.progressBar.visibility = View.INVISIBLE
+
                 Toast.makeText(
                     this@AddStoryActivity,
                     "Deskripsi tidak boleh kosong",
@@ -243,6 +243,7 @@ class AddStoryActivity : AppCompatActivity() {
 
         } else {
             binding.progressBar.visibility = View.INVISIBLE
+
             Toast.makeText(
                 this,
                 "Silakan masukkan berkas gambar terlebih dahulu.",
@@ -299,7 +300,5 @@ class AddStoryActivity : AppCompatActivity() {
 
     companion object {
         const val CAMERA_X_RESULT = 200
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

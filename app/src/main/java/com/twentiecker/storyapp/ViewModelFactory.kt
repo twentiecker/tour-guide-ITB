@@ -1,6 +1,5 @@
 package com.twentiecker.storyapp
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.addstory.AddStoryViewModel
@@ -11,26 +10,25 @@ import com.twentiecker.storyapp.liststory.ListStoryViewModel
 import com.twentiecker.storyapp.maps.MapsViewModel
 import com.twentiecker.storyapp.model.UserPreference
 
-class ViewModelFactory(private val pref: UserPreference, private val context: Context) :
-    ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(ListStoryViewModel::class.java) -> {
-                ListStoryViewModel(pref, Injection.provideRepository(context)) as T
+                ListStoryViewModel(pref, Injection.provideRepository()) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
-                RegisterViewModel() as T
+                RegisterViewModel(Injection.registerRepository()) as T
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
-                LoginViewModel(pref) as T
+                LoginViewModel(pref, Injection.loginRepository()) as T
             }
             modelClass.isAssignableFrom(AddStoryViewModel::class.java) -> {
-                AddStoryViewModel(pref) as T
+                AddStoryViewModel(pref, Injection.addStoryRepository()) as T
             }
             modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
-                MapsViewModel(pref) as T
+                MapsViewModel(pref, Injection.mapsRepository()) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -19,6 +19,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.api.ApiResult
 import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.custom.MyButton
 import com.twentiecker.storyapp.custom.MyEditText
@@ -98,12 +99,10 @@ class LoginActivity : AppCompatActivity() {
     private fun setupViewModel() {
         loginViewModel = ViewModelProvider(
             this,
-            ViewModelFactory(UserPreference.getInstance(dataStore), this)
+            ViewModelFactory(UserPreference.getInstance(dataStore))
         )[LoginViewModel::class.java]
 
         loginViewModel.getUser().observe(this) { user -> this.user = user }
-
-        loginViewModel.userData.observe(this) { userData -> showUserData(userData) }
     }
 
     private fun showUserData(userData: DataItem?) {
@@ -120,13 +119,24 @@ class LoginActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.myButton.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
+
             val email = binding.edLoginEmail.text.toString()
             val password = binding.edLoginPassword.text.toString()
-            loginViewModel.loginService(email, password)
-            loginViewModel.messageData.observe(this) { message ->
-                binding.progressBar.visibility = View.INVISIBLE
-                Toast.makeText(this@LoginActivity, message.toString(), Toast.LENGTH_SHORT)
-                    .show()
+
+            loginViewModel.loginService(email, password).observe(this) { loginResult ->
+                when (loginResult) {
+                    is ApiResult.Success -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        Toast.makeText(this, loginResult.data.message, Toast.LENGTH_SHORT).show()
+                        showUserData(loginResult.data.loginResult)
+                    }
+                    is ApiResult.Error -> {
+                        binding.progressBar.visibility = View.INVISIBLE
+                        Toast.makeText(this, loginResult.error, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                    }
+                }
             }
         }
 

@@ -24,7 +24,6 @@ class ListStoryPagingSource(private val apiService: ApiService, private val toke
             val page = params.key ?: INITIAL_PAGE_INDEX
             val responseData = apiService.getListStory(token, page, params.loadSize)
 
-
             LoadResult.Page(
                 data = responseData.listStory,
                 prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
