@@ -42,4 +42,56 @@
     <string name="hybrid_type">Hybrid</string>
     <string name="image_widget">Image Widget</string>
     <string name="retry">Retry</string>
+    <string name="title_activity_direction">DirectionActivity</string>
+
+    <string name="bikes_name">Electric Bike</string>
+    <string-array name="data_name">
+        <item>Sepeda Listrik Indobike</item>
+        <item>Sepeda Listrik Selis Butterfly</item>
+        <item>Sepeda Listrik Super Rider Mars</item>
+        <item>Sepeda Listrik Super Rider Earth</item>
+        <item>Sepeda Listrik United Milez</item>
+        <item>Sepeda Listrik VIAR CARAKA</item>
+        <item>Xiaomi QiCycle</item>
+    </string-array>
+    <string-array name="data_description">
+        <item>Indobike yang dibuat oleh PT Eco Tumbuh Sejahtera memiliki kekuatan dinamo sebesar 350-500 Watt dan kekuatan dinamo sebesar 480 volt 12 Ah.
+
+Sepeda ini pun dapat menempuh kecepatan hingga 40 km/jam. Indobike juga memberikan fitur alarm anti maling yang akan membuatmu lebih tenang jika diparkir di pasar atau tempat sejenis lainnya.
+
+Selain itu, ban dari Indobike ini sudah tubeless lho, jadi lebih tangguh dan tidak mudah kempes.</item>
+        <item>Selis Butterfly sudah menggunakan ban tubeless. Sepeda ini memiliki daya baterai sebesar 36 volt 12 Ah dengan kekuatan 500 watt.
+
+Sepeda listrik murah ini pun sudah dilengkapi dengan teknologi power assistant.Sehingga ketika menggowes kamu akan terbantu oleh energi yang dihasilkan power assistant ini, dengan begitu kamu tidak akan terlalu capek dan baterai pun akan lebih hemat.
+
+Selis Butterfly mampu menempuh kecepatan hingga 25 km/jam.</item>
+        <item>Sepeda listrik ini hanya memiliki kapasitas bateri sebesar 36 Volt 11 Ah dengan kekuatan listik yang mencapai 350 watt.
+
+Kecepatan maksimal yang dapat dihasilkan saja hanya sebesar 28 km/jam. Desain dari Super Rider Mars ini dapat dibilang mirip dengan desain sepeda lipat.</item>
+        <item>Super Rider Earth memiliki spesifikasi dengan kapasitas baterai 48 volt 12 Ah. Ia memiliki jarak tempuh mencapai 40 km, dan kecepatan masksimumnya adalah 35 km/jam.
+
+Ada fitur menarik dari sepeda ini, yaitu fitur remote key-nya. Walaupun memiliki fitur keyless, sepeda ini tetap menyediakan colokan kunci dan anak kunci sebagai kunci utama. Selain itu, juga terdapat pengunci roda sehingga keamanan akan lebih terjamin.
+
+Pada remote key-nya pun terdapat fitur answer back system, sehingga jika kamu lupa menaruh sepadamu di mana, dengan mudah kamu bisa menemukannya.</item>
+        <item>United Milez ini memiliki jarak tempuh hingga 50 km jika di-charge hingga penuh.
+
+Dengan kapasitas baterai yang sama yaitu 48 volt 12 Ah, sepeda ini 9dapat menumpuh kecepatan hingga 40 km/jam.
+
+Yang membedakan lagi adalah desain dari sepeda listrik United Milez terkesan lebih sporty dibandingkan dengan sepeda listrik seri Espana.</item>
+        <item>Sepeda listrik dengan desain manis yakni Viar Caraka. Sepeda listrik ini telah memiliki keranjang depan untuk menaruh berbagai barang atau belanjaan, sehingga akan memudahkan para ibu-ibu ketika berbelanja di pagi hari.
+
+Sepeda listrik ini memiliki baterai berkekuatan 48V 12Ah dengan motor aki 400W. Ada indikator speedmeter, ordometer, hingga lampu. Sepeda listrik dari Viar ini berkecepatan maksimal 30km/jam. </item>
+        <item>Xiaomi QiCycle memiliki bentuk kerangka sepeda lipat yang unik dan kokoh. Bentuk bodinya yang horizontal membuat sepeda lipat besutan Xiaomi ini begitu khas.
+
+Terkait performanya, kamu tidak perlu ragu lagi. Pokoknya, sepeda listrik lipat ini dapat menjadi andalan kapan pun dibutuhkan.</item>
+    </string-array>
+    <string-array name="data_photo">
+        <item>https://upload.wikimedia.org/wikipedia/commons/b/b0/Indobike_Bike.jpg?20221216220546</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/4/49/Selis_Bike.jpg?20221216220618</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/0/07/Super_rider_mars.jpg?20221216220548</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/5/59/Super_rider_earth.jpg?20221216220548</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/6/6e/United_miles.jpg?20221216220549</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/7/73/Viar_Bike.jpg?20221216220551</item>
+        <item>https://upload.wikimedia.org/wikipedia/commons/4/47/Xiaomi_Bike.jpg?20221216220619</item>
+    </string-array>
 </resources>

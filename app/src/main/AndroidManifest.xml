@@ -12,7 +12,8 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +25,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bike.BikeDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".liststory.ListStoryActivity"
+            android:exported="false" />
 
+        <receiver
+            android:name=".maps.direction.GeofenceBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -40,6 +54,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
+        <activity
+            android:name=".maps.direction.DirectionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_direction" />
         <activity
             android:name=".maps.MapsActivity"
             android:exported="false"
@@ -76,7 +94,7 @@
             android:name=".authentication.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".liststory.ListStoryActivity"
+            android:name=".bike.BikeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

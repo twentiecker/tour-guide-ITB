@@ -43,4 +43,6 @@
     <string name="hybrid_type">Hybrid</string>
     <string name="image_widget">Gambar Widget</string>
     <string name="retry">Coba lagi</string>
+    <string name="title_activity_direction">DirectionActivity</string>
+    <string name="bikes_name">Sepeda Listrik</string>
 </resources>
