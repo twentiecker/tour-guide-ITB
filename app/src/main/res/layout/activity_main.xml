@@ -7,6 +7,15 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalUser"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.107"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
@@ -21,51 +30,63 @@
         android:layout_height="64dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintGuide_percent="0.26"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linear_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/image_user"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVertical"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalUser"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_undraw_male_avatar_re_8fid" />
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_undraw_male_avatar_re_8fid" />
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/hello"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guidelineVertical"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalUser">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Halo!"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/let_s"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/xplore"
+            android:textStyle="bold|italic"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_email_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Email"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/itb"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -81,7 +102,7 @@
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_main" />
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontalUser" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/cord_main"
@@ -228,7 +249,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_budget_main"
+                android:id="@+id/cv_scanner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -246,7 +267,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/ic_baseline_person_24"
+                        android:src="@drawable/ic_baseline_qr_code_scanner_24"
                         app:layout_constraintBottom_toTopOf="@id/text4"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -256,7 +277,7 @@
                         android:id="@+id/text4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Free Space"
+                        android:text="@string/qr_code"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -285,8 +306,11 @@
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/ic_baseline_person_24"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:src="@drawable/peduli_lindungi_icon"
                         app:layout_constraintBottom_toTopOf="@id/text5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -296,7 +320,7 @@
                         android:id="@+id/text5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Free Space"
+                        android:text="PeduliLindungi"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -326,7 +350,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/ic_baseline_person_24"
+                        android:src="@drawable/ic_baseline_collections_bookmark_24"
                         app:layout_constraintBottom_toTopOf="@id/text6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -336,7 +360,7 @@
                         android:id="@+id/text6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Free Space"
+                        android:text="@string/favorite"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"

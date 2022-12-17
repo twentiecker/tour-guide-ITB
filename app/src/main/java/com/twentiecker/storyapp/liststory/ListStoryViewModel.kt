@@ -18,12 +18,6 @@ class ListStoryViewModel(
         return pref.getUser().asLiveData()
     }
 
-    fun logout() {
-        viewModelScope.launch {
-            pref.logout()
-        }
-    }
-
     fun listStory(token: String): LiveData<PagingData<ListStoryItem>> =
         listStoryRepository.getStory(token).cachedIn(viewModelScope)
 }

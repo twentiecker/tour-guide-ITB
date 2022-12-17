@@ -25,7 +25,7 @@ import com.twentiecker.storyapp.welcome.WelcomeActivity
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var listStoryViewModel: ListStoryViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
+        val colorDrawable = ColorDrawable(Color.parseColor(getString(R.string.blue)))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
         setupViewModel()
@@ -53,6 +53,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, BikeActivity::class.java)
             startActivity(intent)
         }
+
+        binding.cvScanner.setOnClickListener {
+            val intent = Intent(this@MainActivity, ScanActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.logout -> {
-                listStoryViewModel.logout()
+                mainViewModel.logout()
                 true
             }
             R.id.language -> {
@@ -77,14 +82,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        listStoryViewModel = ViewModelProvider(
+        mainViewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[ListStoryViewModel::class.java]
+        )[MainViewModel::class.java]
 
-        listStoryViewModel.getUser().observe(this) { user ->
+        mainViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                // binding ke nama user nya ya
+                binding.nameTextView.text = getString(R.string.greeting, user.name)
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()

@@ -61,7 +61,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
+        val colorDrawable = ColorDrawable(Color.parseColor(getString(R.string.blue)))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

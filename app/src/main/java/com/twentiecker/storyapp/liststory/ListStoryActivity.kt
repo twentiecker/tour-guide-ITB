@@ -45,7 +45,7 @@ class ListStoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
+        val colorDrawable = ColorDrawable(Color.parseColor(getString(R.string.blue)))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
         binding.progressBar.visibility = View.VISIBLE
@@ -85,16 +85,11 @@ class ListStoryActivity : AppCompatActivity() {
         )[ListStoryViewModel::class.java]
 
         listStoryViewModel.getUser().observe(this) { user ->
-            if (user.isLogin) {
-                listStoryViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
-                    .observe(this) { listStory ->
-                        binding.progressBar.visibility = View.INVISIBLE
-                        showRecyclerList(listStory)
-                    }
-            } else {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-                finish()
-            }
+            listStoryViewModel.listStory(StringBuilder("Bearer ").append(user.token).toString())
+                .observe(this) { listStory ->
+                    binding.progressBar.visibility = View.INVISIBLE
+                    showRecyclerList(listStory)
+                }
         }
     }
 

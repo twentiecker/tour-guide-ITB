@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Campus Tour Guide</string>
+    <string name="app_name">C-TourApp</string>
     <string name="camera_x">CameraX</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -25,7 +25,7 @@
     <string name="menu_2">Logout</string>
     <string name="menu_3">Maps</string>
     <string name="welcome">Welcome</string>
-    <string name="to_storyapp">to Campus Tour Guide</string>
+    <string name="to_storyapp">to C-TourApp</string>
     <string name="submit">Submit</string>
     <string name="credential">Enter Your Credentials</string>
     <string name="image_user">Image User</string>
@@ -47,6 +47,14 @@
     <string name="review">Review</string>
     <string name="campus">Bandung Insitute of Technology</string>
     <string name="rent">Rent The Bike</string>
+    <string name="qr_code">QR Code</string>
+    <string name="greeting">Hello, %1$s!</string>
+    <string name="hello">Hello!</string>
+    <string name="let_s">Let\'s</string>
+    <string name="xplore">Xplore</string>
+    <string name="itb">ITB</string>
+    <string name="favorite">Favorite</string>
+    <string name="blue">#229bd8</string>
     <string-array name="data_name">
         <item>Sepeda Listrik Indobike</item>
         <item>Sepeda Listrik Selis Butterfly</item>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Campus Tour Guide</string>
+    <string name="app_name">C-TourApp</string>
     <string name="camera_x">CameraX</string>
     <string name="camera">Kamera</string>
     <string name="gallery">Album</string>
@@ -26,7 +26,7 @@
     <string name="menu_2">Logout</string>
     <string name="menu_3">Maps</string>
     <string name="welcome">Selamat Datang</string>
-    <string name="to_storyapp">di Campus Tour Guide</string>
+    <string name="to_storyapp">di C-TourApp</string>
     <string name="submit">Kirim</string>
     <string name="credential">Masukkan Kredensial Anda</string>
     <string name="image_user">Gambar Pengguna</string>
@@ -48,4 +48,12 @@
     <string name="review">Ulasan</string>
     <string name="campus">Institut Teknologi Bandung</string>
     <string name="rent">Sewa Sepeda</string>
+    <string name="qr_code">Kode QR</string>
+    <string name="greeting">Halo, %1$s!</string>
+    <string name="hello">Halo!</string>
+    <string name="let_s">Mari</string>
+    <string name="xplore">Menjelajah</string>
+    <string name="itb">ITB</string>
+    <string name="favorite">Favorit</string>
+    <string name="blue">#229bd8</string>
 </resources>
