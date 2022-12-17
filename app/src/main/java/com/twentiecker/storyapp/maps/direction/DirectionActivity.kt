@@ -6,12 +6,17 @@ import android.annotation.TargetApi
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingClient
@@ -23,6 +28,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.databinding.ActivityDirectionBinding
@@ -32,9 +38,9 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityDirectionBinding
 
-    private val centerLat = -6.890735208064823
-    private val centerLng = 107.6109263661377
-    private val geofenceRadius = 400.0
+    private val centerLat = -6.890336202165823  // dinaikkan jadi turun ring nya (y)
+    private val centerLng = 107.6104263660377 // dinaikkan jadi kanan ring nya (x)
+    private val geofenceRadius = 255.0
 
     private lateinit var geofencingClient: GeofencingClient
 
@@ -53,6 +59,10 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityDirectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val actionBar: ActionBar? = supportActionBar
+        val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
+        actionBar?.setBackgroundDrawable(colorDrawable)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -75,7 +85,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         val stanford = LatLng(centerLat, centerLng)
-        mMap.addMarker(MarkerOptions().position(stanford).title("Stanford University"))
+        mMap.addMarker(MarkerOptions().position(stanford).title(getString(R.string.campus)))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stanford, 15f))
         mMap.addCircle(
             CircleOptions()
@@ -88,6 +98,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getMyLocation()
         addGeofence()
+        setMapStyle(R.raw.map_itb)
     }
 
     @SuppressLint("MissingPermission")
@@ -172,6 +183,52 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.isMyLocationEnabled = true
         } else {
             requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_maps, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.normal_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+                true
+            }
+            R.id.satellite_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                true
+            }
+            R.id.terrain_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                true
+            }
+            R.id.hybrid_type -> {
+                mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
+    private fun setMapStyle(x: Int) {
+        try {
+            val success =
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, x))
+            if (!success) {
+                Toast.makeText(this@DirectionActivity, "Style parsing failed.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        } catch (exception: Resources.NotFoundException) {
+            Toast.makeText(
+                this@DirectionActivity,
+                "Can't find style. Error: $exception",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

@@ -26,14 +26,20 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
-            android:name=".liststory.ListStoryActivity"
+            android:name=".ScanActivity"
             android:exported="false" />
+        <activity
+            android:name=".liststory.ListStoryActivity"
+            android:exported="false"
+            android:label="@string/review" />
         <activity
             android:name=".bike.BikeDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/bikes_name" />
         <activity
             android:name=".bike.BikeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/bikes_name" />
 
         <receiver
             android:name=".maps.direction.GeofenceBroadcastReceiver"

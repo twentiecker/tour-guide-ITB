@@ -25,7 +25,7 @@
     <string name="menu_2">Logout</string>
     <string name="menu_3">Maps</string>
     <string name="welcome">Welcome</string>
-    <string name="to_storyapp">to StoryApp</string>
+    <string name="to_storyapp">to Campus Tour Guide</string>
     <string name="submit">Submit</string>
     <string name="credential">Enter Your Credentials</string>
     <string name="image_user">Image User</string>
@@ -35,16 +35,18 @@
     <string name="description">Description</string>
     <string name="selfie_mode">Selfie Mode</string>
     <string name="camera_shutter">Camera Shutter</string>
-    <string name="title_activity_maps">Story App</string>
+    <string name="title_activity_maps">Map Review</string>
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>
     <string name="hybrid_type">Hybrid</string>
     <string name="image_widget">Image Widget</string>
     <string name="retry">Retry</string>
-    <string name="title_activity_direction">DirectionActivity</string>
-
+    <string name="title_activity_direction">Map</string>
     <string name="bikes_name">Electric Bike</string>
+    <string name="review">Review</string>
+    <string name="campus">Bandung Insitute of Technology</string>
+    <string name="rent">Rent The Bike</string>
     <string-array name="data_name">
         <item>Sepeda Listrik Indobike</item>
         <item>Sepeda Listrik Selis Butterfly</item>

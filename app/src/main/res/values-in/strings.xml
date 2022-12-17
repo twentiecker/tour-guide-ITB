@@ -26,7 +26,7 @@
     <string name="menu_2">Logout</string>
     <string name="menu_3">Maps</string>
     <string name="welcome">Selamat Datang</string>
-    <string name="to_storyapp">di StoryApp</string>
+    <string name="to_storyapp">di Campus Tour Guide</string>
     <string name="submit">Kirim</string>
     <string name="credential">Masukkan Kredensial Anda</string>
     <string name="image_user">Gambar Pengguna</string>
@@ -36,13 +36,16 @@
     <string name="description">Deskripsi</string>
     <string name="selfie_mode">Mode Selfi</string>
     <string name="camera_shutter">Tombol Kamera</string>
-    <string name="title_activity_maps">Story App</string>
+    <string name="title_activity_maps">Peta Ulasan</string>
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>
     <string name="hybrid_type">Hybrid</string>
     <string name="image_widget">Gambar Widget</string>
     <string name="retry">Coba lagi</string>
-    <string name="title_activity_direction">DirectionActivity</string>
+    <string name="title_activity_direction">Peta</string>
     <string name="bikes_name">Sepeda Listrik</string>
+    <string name="review">Ulasan</string>
+    <string name="campus">Institut Teknologi Bandung</string>
+    <string name="rent">Sewa Sepeda</string>
 </resources>
