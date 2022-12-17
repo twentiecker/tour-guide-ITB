@@ -17,6 +17,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.twentiecker.storyapp.MainActivity
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.api.ApiResult
@@ -108,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showUserData(userData: DataItem?) {
         if (userData != null) {
             loginViewModel.saveUser(UserModel(userData.userId, userData.name, userData.token, true))
-            val intent = Intent(this@LoginActivity, ListStoryActivity::class.java)
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)

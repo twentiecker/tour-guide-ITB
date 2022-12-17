@@ -26,13 +26,13 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".liststory.ListStoryActivity"
             android:exported="false" />
         <activity
             android:name=".bike.BikeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".liststory.ListStoryActivity"
+            android:name=".bike.BikeActivity"
             android:exported="false" />
 
         <receiver
@@ -94,7 +94,7 @@
             android:name=".authentication.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".bike.BikeActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

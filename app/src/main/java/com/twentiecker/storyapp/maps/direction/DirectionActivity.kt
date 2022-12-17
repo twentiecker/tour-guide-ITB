@@ -32,9 +32,9 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityDirectionBinding
 
-    private val centerLat = -6.156846934767713
-    private val centerLng = 106.86003583733054
-    private val geofenceRadius = 110.0
+    private val centerLat = -6.890735208064823
+    private val centerLng = 107.6109263661377
+    private val geofenceRadius = 400.0
 
     private lateinit var geofencingClient: GeofencingClient
 

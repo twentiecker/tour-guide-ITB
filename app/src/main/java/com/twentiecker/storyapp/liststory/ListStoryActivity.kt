@@ -69,15 +69,6 @@ class ListStoryActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.logout -> {
-                listStoryViewModel.logout()
-                true
-            }
-            R.id.language -> {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(intent)
-                true
-            }
             R.id.map -> {
                 val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
