@@ -46,6 +46,8 @@
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_battery_charging_full_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_collections_bookmark_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_electric_bike_24.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_map_24_menu.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_speed_24.xml" value="0.2" />
@@ -67,7 +69,7 @@
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_main2.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
-        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_scan.xml" value="0.11302083333333333" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_scan.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_welcome.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/item_loading.xml" value="0.11197916666666667" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/item_row_bike.xml" value="0.22826086956521738" />

@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp.data
+package com.twentiecker.storyapp.liststory.data
 
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager

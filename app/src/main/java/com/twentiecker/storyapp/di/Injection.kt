@@ -4,7 +4,7 @@ import com.twentiecker.storyapp.addstory.AddStoryRepository
 import com.twentiecker.storyapp.api.ApiConfig
 import com.twentiecker.storyapp.authentication.login.LoginRepository
 import com.twentiecker.storyapp.authentication.register.RegisterRepository
-import com.twentiecker.storyapp.data.ListStoryRepository
+import com.twentiecker.storyapp.liststory.data.ListStoryRepository
 import com.twentiecker.storyapp.maps.MapsRepository
 
 object Injection {

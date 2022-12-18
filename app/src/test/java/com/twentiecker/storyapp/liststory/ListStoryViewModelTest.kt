@@ -10,7 +10,7 @@ import androidx.paging.PagingState
 import androidx.recyclerview.widget.ListUpdateCallback
 import com.twentiecker.storyapp.utils.DataDummy
 import com.twentiecker.storyapp.utils.MainDispatcherRule
-import com.twentiecker.storyapp.data.ListStoryRepository
+import com.twentiecker.storyapp.liststory.data.ListStoryRepository
 import com.twentiecker.storyapp.utils.getOrAwaitValue
 import com.twentiecker.storyapp.liststory.adapter.ListStoryAdapter
 import com.twentiecker.storyapp.model.ListStoryItem

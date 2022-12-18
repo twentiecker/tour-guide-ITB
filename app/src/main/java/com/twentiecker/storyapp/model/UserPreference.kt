@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.twentiecker.storyapp.bike.model.Bike
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -30,6 +31,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun saveBike(bike: Bike) {
+        dataStore.edit { preferences ->
+            preferences[NAME] = bike.name
+        }
+    }
+
     suspend fun login() {
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = true
@@ -50,6 +57,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val STATE_KEY = booleanPreferencesKey("state")
+        private val NAME = stringPreferencesKey("bike_name")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

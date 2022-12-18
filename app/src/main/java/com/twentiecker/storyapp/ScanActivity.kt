@@ -1,8 +1,10 @@
 package com.twentiecker.storyapp
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -33,6 +35,7 @@ class ScanActivity : AppCompatActivity() {
         setPermission()
     }
 
+//    @SuppressLint("ResourceType")
     private fun codeScanner() {
         codeScanner = CodeScanner(this, binding.scanner)
 
@@ -47,7 +50,12 @@ class ScanActivity : AppCompatActivity() {
 
             decodeCallback = DecodeCallback {
                 runOnUiThread {
-                    binding.tvOutput.text = it.text
+                    binding.tvOutput.text = "Unlocked"
+                    binding.tvOutput.setTextColor(Color.parseColor(getString(R.string.blue)))
+                    binding.imgOutput.setImageResource(R.drawable.ic_baseline_lock_open_24)
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                        binding.imgOutput.setColorFilter(getColor(R.string.blue))
+//                    }
                 }
             }
 
