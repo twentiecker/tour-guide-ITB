@@ -62,6 +62,7 @@
     <string name="store">ITB Rent Shop</string>
     <string name="speed">42</string>
     <string name="price">Rp 10.000</string>
+    <string name="peduli">PeduliLindungi</string>
     <string-array name="data_name">
         <item>Indobike</item>
         <item>Selis Butterfly</item>

@@ -26,9 +26,16 @@
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
         <activity
-            android:name=".ScanActivity"
+            android:name=".scanner.PeduliDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".scanner.PeduliActivity"
             android:exported="false"
-            android:label="@string/qr_code"/>
+            android:label="@string/peduli" />
+        <activity
+            android:name=".scanner.ScanActivity"
+            android:exported="false"
+            android:label="@string/qr_code" />
         <activity
             android:name=".liststory.ListStoryActivity"
             android:exported="false"

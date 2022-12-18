@@ -15,13 +15,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.R
-import com.twentiecker.storyapp.ScanActivity
+import com.twentiecker.storyapp.scanner.ScanActivity
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.bike.BikeActivity
 import com.twentiecker.storyapp.databinding.ActivityMainBinding
 import com.twentiecker.storyapp.liststory.ListStoryActivity
 import com.twentiecker.storyapp.maps.direction.DirectionActivity
 import com.twentiecker.storyapp.model.UserPreference
+import com.twentiecker.storyapp.scanner.PeduliActivity
 import com.twentiecker.storyapp.welcome.WelcomeActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -58,6 +59,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.cvScanner.setOnClickListener {
             val intent = Intent(this@MainActivity, ScanActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvPeduli.setOnClickListener {
+            val intent = Intent(this@MainActivity, PeduliActivity::class.java)
             startActivity(intent)
         }
     }

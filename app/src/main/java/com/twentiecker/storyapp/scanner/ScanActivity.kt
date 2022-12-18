@@ -1,10 +1,8 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.scanner
 
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,11 +14,12 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
+import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.databinding.ActivityScanBinding
 
 class ScanActivity : AppCompatActivity() {
     lateinit var binding : ActivityScanBinding
-    lateinit var  codeScanner : CodeScanner
+    lateinit var codeScanner : CodeScanner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,6 @@ class ScanActivity : AppCompatActivity() {
         setPermission()
     }
 
-//    @SuppressLint("ResourceType")
     private fun codeScanner() {
         codeScanner = CodeScanner(this, binding.scanner)
 
@@ -53,9 +51,6 @@ class ScanActivity : AppCompatActivity() {
                     binding.tvOutput.text = "Unlocked"
                     binding.tvOutput.setTextColor(Color.parseColor(getString(R.string.blue)))
                     binding.imgOutput.setImageResource(R.drawable.ic_baseline_lock_open_24)
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                        binding.imgOutput.setColorFilter(getColor(R.string.blue))
-//                    }
                 }
             }
 
