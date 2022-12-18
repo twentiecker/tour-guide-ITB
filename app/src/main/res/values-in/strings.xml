@@ -56,4 +56,11 @@
     <string name="itb">ITB</string>
     <string name="favorite">Favorit</string>
     <string name="blue">#229bd8</string>
+    <string name="add_review">Tambah Ulasan</string>
+    <string name="rating">4.5 (1,249)</string>
+    <string name="energy">100</string>
+    <string name="date">Diunggah pada 5 Agustus 2021</string>
+    <string name="store">Toko Rental ITB</string>
+    <string name="speed">42</string>
+    <string name="price">Rp 10.000</string>
 </resources>

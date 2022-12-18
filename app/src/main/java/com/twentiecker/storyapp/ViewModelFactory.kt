@@ -7,6 +7,7 @@ import com.twentiecker.storyapp.authentication.login.LoginViewModel
 import com.twentiecker.storyapp.authentication.register.RegisterViewModel
 import com.twentiecker.storyapp.di.Injection
 import com.twentiecker.storyapp.liststory.ListStoryViewModel
+import com.twentiecker.storyapp.main.MainViewModel
 import com.twentiecker.storyapp.maps.MapsViewModel
 import com.twentiecker.storyapp.model.UserPreference
 

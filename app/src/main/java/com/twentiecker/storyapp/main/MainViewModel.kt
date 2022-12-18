@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

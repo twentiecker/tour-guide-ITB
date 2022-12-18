@@ -27,6 +27,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.api.ApiResult
 import com.twentiecker.storyapp.liststory.ListStoryActivity
@@ -55,7 +56,7 @@ class AddStoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar: ActionBar? = supportActionBar
-        val colorDrawable = ColorDrawable(Color.parseColor("#0064fe"))
+        val colorDrawable = ColorDrawable(Color.parseColor(getString(R.string.blue)))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
         binding.cameraXButton.setOnClickListener { startCameraX() }

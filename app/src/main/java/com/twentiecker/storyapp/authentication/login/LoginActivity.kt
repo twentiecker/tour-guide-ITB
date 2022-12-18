@@ -17,7 +17,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.twentiecker.storyapp.MainActivity
+import com.twentiecker.storyapp.main.MainActivity
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.api.ApiResult
@@ -25,7 +25,6 @@ import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.custom.MyButton
 import com.twentiecker.storyapp.custom.MyEditText
 import com.twentiecker.storyapp.databinding.ActivityLoginBinding
-import com.twentiecker.storyapp.liststory.ListStoryActivity
 import com.twentiecker.storyapp.model.DataItem
 import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference

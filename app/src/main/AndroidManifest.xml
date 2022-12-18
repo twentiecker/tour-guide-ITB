@@ -96,12 +96,13 @@
             android:exported="false" />
         <activity
             android:name=".addstory.AddStoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/add_review" />
         <activity
             android:name=".authentication.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -55,45 +55,57 @@
     <string name="itb">ITB</string>
     <string name="favorite">Favorite</string>
     <string name="blue">#229bd8</string>
+    <string name="add_review">Add Review</string>
+    <string name="rating">4.5 (1,249)</string>
+    <string name="energy">100</string>
+    <string name="date">Uploaded on Aug 5, 2021</string>
+    <string name="store">ITB Rent Shop</string>
+    <string name="speed">42</string>
+    <string name="price">Rp 10.000</string>
     <string-array name="data_name">
-        <item>Sepeda Listrik Indobike</item>
-        <item>Sepeda Listrik Selis Butterfly</item>
-        <item>Sepeda Listrik Super Rider Mars</item>
-        <item>Sepeda Listrik Super Rider Earth</item>
-        <item>Sepeda Listrik United Milez</item>
-        <item>Sepeda Listrik VIAR CARAKA</item>
+        <item>Indobike</item>
+        <item>Selis Butterfly</item>
+        <item>Super Rider Mars</item>
+        <item>Super Rider Earth</item>
+        <item>United Milez</item>
+        <item>Viar Caraka</item>
         <item>Xiaomi QiCycle</item>
     </string-array>
+    <string-array name="data_energy">
+        <item>350 Watt</item>
+        <item>500 Watt</item>
+        <item>350 Watt</item>
+        <item>350 Watt</item>
+        <item>350 Watt</item>
+        <item>400 Watt</item>
+        <item>500 Watt</item>
+    </string-array>
+    <string-array name="data_rating">
+        <item>4.7 (321)</item>
+        <item>4.6 (102)</item>
+        <item>4.5 (213)</item>
+        <item>4.7 (300)</item>
+        <item>4.9 (30)</item>
+        <item>4.5 (154)</item>
+        <item>4.7 (224)</item>
+    </string-array>
+    <string-array name="data_speed">
+        <item>40 km/jam</item>
+        <item>25 km/jam</item>
+        <item>28 km/jam</item>
+        <item>35 km/jam</item>
+        <item>50 km/jam</item>
+        <item>30 km/jam</item>
+        <item>50 km/jam</item>
+    </string-array>
     <string-array name="data_description">
-        <item>Indobike yang dibuat oleh PT Eco Tumbuh Sejahtera memiliki kekuatan dinamo sebesar 350-500 Watt dan kekuatan dinamo sebesar 480 volt 12 Ah.
-
-Sepeda ini pun dapat menempuh kecepatan hingga 40 km/jam. Indobike juga memberikan fitur alarm anti maling yang akan membuatmu lebih tenang jika diparkir di pasar atau tempat sejenis lainnya.
-
-Selain itu, ban dari Indobike ini sudah tubeless lho, jadi lebih tangguh dan tidak mudah kempes.</item>
-        <item>Selis Butterfly sudah menggunakan ban tubeless. Sepeda ini memiliki daya baterai sebesar 36 volt 12 Ah dengan kekuatan 500 watt.
-
-Sepeda listrik murah ini pun sudah dilengkapi dengan teknologi power assistant.Sehingga ketika menggowes kamu akan terbantu oleh energi yang dihasilkan power assistant ini, dengan begitu kamu tidak akan terlalu capek dan baterai pun akan lebih hemat.
-
-Selis Butterfly mampu menempuh kecepatan hingga 25 km/jam.</item>
-        <item>Sepeda listrik ini hanya memiliki kapasitas bateri sebesar 36 Volt 11 Ah dengan kekuatan listik yang mencapai 350 watt.
-
-Kecepatan maksimal yang dapat dihasilkan saja hanya sebesar 28 km/jam. Desain dari Super Rider Mars ini dapat dibilang mirip dengan desain sepeda lipat.</item>
-        <item>Super Rider Earth memiliki spesifikasi dengan kapasitas baterai 48 volt 12 Ah. Ia memiliki jarak tempuh mencapai 40 km, dan kecepatan masksimumnya adalah 35 km/jam.
-
-Ada fitur menarik dari sepeda ini, yaitu fitur remote key-nya. Walaupun memiliki fitur keyless, sepeda ini tetap menyediakan colokan kunci dan anak kunci sebagai kunci utama. Selain itu, juga terdapat pengunci roda sehingga keamanan akan lebih terjamin.
-
-Pada remote key-nya pun terdapat fitur answer back system, sehingga jika kamu lupa menaruh sepadamu di mana, dengan mudah kamu bisa menemukannya.</item>
-        <item>United Milez ini memiliki jarak tempuh hingga 50 km jika di-charge hingga penuh.
-
-Dengan kapasitas baterai yang sama yaitu 48 volt 12 Ah, sepeda ini 9dapat menumpuh kecepatan hingga 40 km/jam.
-
-Yang membedakan lagi adalah desain dari sepeda listrik United Milez terkesan lebih sporty dibandingkan dengan sepeda listrik seri Espana.</item>
-        <item>Sepeda listrik dengan desain manis yakni Viar Caraka. Sepeda listrik ini telah memiliki keranjang depan untuk menaruh berbagai barang atau belanjaan, sehingga akan memudahkan para ibu-ibu ketika berbelanja di pagi hari.
-
-Sepeda listrik ini memiliki baterai berkekuatan 48V 12Ah dengan motor aki 400W. Ada indikator speedmeter, ordometer, hingga lampu. Sepeda listrik dari Viar ini berkecepatan maksimal 30km/jam. </item>
-        <item>Xiaomi QiCycle memiliki bentuk kerangka sepeda lipat yang unik dan kokoh. Bentuk bodinya yang horizontal membuat sepeda lipat besutan Xiaomi ini begitu khas.
-
-Terkait performanya, kamu tidak perlu ragu lagi. Pokoknya, sepeda listrik lipat ini dapat menjadi andalan kapan pun dibutuhkan.</item>
+        <item>Indobike yang dibuat oleh PT Eco Tumbuh Sejahtera memiliki kekuatan dinamo sebesar 350-500 Watt dan kekuatan dinamo sebesar 480 volt 12 Ah. Sepeda ini pun dapat menempuh kecepatan hingga 40 km/jam. Indobike juga memberikan fitur alarm anti maling yang akan membuatmu lebih tenang jika diparkir di pasar atau tempat sejenis lainnya. Selain itu, ban dari Indobike ini sudah tubeless lho, jadi lebih tangguh dan tidak mudah kempes.</item>
+        <item>Selis Butterfly sudah menggunakan ban tubeless. Sepeda ini memiliki daya baterai sebesar 36 volt 12 Ah dengan kekuatan 500 watt. Sepeda listrik murah ini pun sudah dilengkapi dengan teknologi power assistant.Sehingga ketika menggowes kamu akan terbantu oleh energi yang dihasilkan power assistant ini, dengan begitu kamu tidak akan terlalu capek dan baterai pun akan lebih hemat. Selis Butterfly mampu menempuh kecepatan hingga 25 km/jam.</item>
+        <item>Sepeda listrik ini hanya memiliki kapasitas bateri sebesar 36 Volt 11 Ah dengan kekuatan listik yang mencapai 350 watt. Kecepatan maksimal yang dapat dihasilkan saja hanya sebesar 28 km/jam. Desain dari Super Rider Mars ini dapat dibilang mirip dengan desain sepeda lipat.</item>
+        <item>Super Rider Earth memiliki spesifikasi dengan kapasitas baterai 48 volt 12 Ah. Ia memiliki jarak tempuh mencapai 40 km, dan kecepatan maksimumnya adalah 35 km/jam. Ada fitur menarik dari sepeda ini, yaitu fitur remote key-nya. Pada remote key-nya terdapat fitur answer back system, sehingga jika kamu lupa menaruh sepadamu di mana, dengan mudah kamu bisa menemukannya.</item>
+        <item>United Milez ini memiliki jarak tempuh hingga 50 km jika di-charge hingga penuh. Dengan kapasitas baterai yang sama yaitu 48 volt 12 Ah, sepeda ini dapat menumpuh kecepatan hingga 40 km/jam. Yang membedakan lagi adalah desain dari sepeda listrik United Milez terkesan lebih sporty dibandingkan dengan sepeda listrik seri Espana.</item>
+        <item>Sepeda listrik dengan desain manis yakni Viar Caraka. Sepeda listrik ini telah memiliki keranjang depan untuk menaruh berbagai barang atau belanjaan, sehingga akan memudahkan para ibu-ibu ketika berbelanja di pagi hari. Sepeda listrik ini memiliki baterai berkekuatan 48V 12Ah dengan motor aki 400W. Ada indikator speedmeter, ordometer, hingga lampu. Sepeda listrik dari Viar ini berkecepatan maksimal 30km/jam. </item>
+        <item>Xiaomi QiCycle memiliki bentuk kerangka sepeda lipat yang unik dan kokoh. Bentuk bodinya yang horizontal membuat sepeda lipat besutan Xiaomi ini begitu khas. Terkait performanya, kamu tidak perlu ragu lagi. Pokoknya, sepeda listrik lipat ini dapat menjadi andalan kapan pun dibutuhkan.</item>
     </string-array>
     <string-array name="data_photo">
         <item>https://upload.wikimedia.org/wikipedia/commons/b/b0/Indobike_Bike.jpg?20221216220546</item>

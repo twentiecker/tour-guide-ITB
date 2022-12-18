@@ -38,6 +38,7 @@
             android:layout_toEndOf="@id/profileImageView"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/profileImageView"
             card_view:layout_constraintTop_toTopOf="@+id/profileImageView"

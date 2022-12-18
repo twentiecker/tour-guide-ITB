@@ -1,4 +1,4 @@
-package com.twentiecker.storyapp
+package com.twentiecker.storyapp.main
 
 import android.content.Context
 import android.content.Intent
@@ -14,10 +14,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.twentiecker.storyapp.R
+import com.twentiecker.storyapp.ScanActivity
+import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.bike.BikeActivity
 import com.twentiecker.storyapp.databinding.ActivityMainBinding
 import com.twentiecker.storyapp.liststory.ListStoryActivity
-import com.twentiecker.storyapp.liststory.ListStoryViewModel
 import com.twentiecker.storyapp.maps.direction.DirectionActivity
 import com.twentiecker.storyapp.model.UserPreference
 import com.twentiecker.storyapp.welcome.WelcomeActivity

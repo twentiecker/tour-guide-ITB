@@ -48,9 +48,12 @@ class BikeActivity : AppCompatActivity() {
             val dataName = resources.getStringArray(R.array.data_name)
             val dataDescription = resources.getStringArray(R.array.data_description)
             val dataPhoto = resources.getStringArray(R.array.data_photo)
+            val dataEnergy = resources.getStringArray(R.array.data_energy)
+            val dataRating = resources.getStringArray(R.array.data_rating)
+            val dataSpeed = resources.getStringArray(R.array.data_speed)
             val listBikes = ArrayList<Bike>()
             for (i in dataName.indices) {
-                val bike = Bike(dataName[i], dataDescription[i], dataPhoto[i])
+                val bike = Bike(dataName[i], dataDescription[i], dataPhoto[i], dataEnergy[i], dataRating[i], dataSpeed[i])
                 listBikes.add(bike)
             }
             return listBikes
