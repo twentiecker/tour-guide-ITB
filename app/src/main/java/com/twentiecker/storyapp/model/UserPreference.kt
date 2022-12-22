@@ -30,6 +30,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[ENERGY] ?: "",
                 preferences[RATING] ?: "",
                 preferences[SPEED] ?: "",
+                preferences[STATE_SCAN] ?: false,
             )
         }
     }
@@ -51,12 +52,19 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[PHOTO] = bikeModel.photo
             preferences[RATING] = bikeModel.rating
             preferences[SPEED] = bikeModel.speed
+            preferences[STATE_SCAN] = bikeModel.isScanned
         }
     }
 
     suspend fun login() {
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = true
+        }
+    }
+
+    suspend fun scan() {
+        dataStore.edit { preferences ->
+            preferences[STATE_SCAN] = true
         }
     }
 
@@ -69,6 +77,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[PHOTO] = ""
             preferences[RATING] = ""
             preferences[SPEED] = ""
+            preferences[STATE_SCAN] = false
         }
     }
 
@@ -87,6 +96,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val PHOTO = stringPreferencesKey("photo")
         private val RATING = stringPreferencesKey("rating")
         private val SPEED = stringPreferencesKey("speed")
+        private val STATE_SCAN = booleanPreferencesKey("scan")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

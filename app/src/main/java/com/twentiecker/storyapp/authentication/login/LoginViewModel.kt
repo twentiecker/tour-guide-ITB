@@ -20,11 +20,11 @@ class LoginViewModel(
         }
     }
 
-    fun login() {
-        viewModelScope.launch {
-            pref.login()
-        }
-    }
+//    fun login() {
+//        viewModelScope.launch {
+//            pref.login()
+//        }
+//    }
 
     fun loginService(email: String, pass: String): LiveData<ApiResult<LoginResponse>> =
         loginRepository.loginService(email, pass)

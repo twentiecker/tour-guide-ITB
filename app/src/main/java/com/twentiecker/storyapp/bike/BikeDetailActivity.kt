@@ -100,7 +100,8 @@ class BikeDetailActivity : AppCompatActivity() {
                     bikeData.photo,
                     bikeData.energy,
                     bikeData.rating,
-                    bikeData.speed
+                    bikeData.speed,
+                    false
                 )
             )
             val intent = Intent(this@BikeDetailActivity, MainActivity::class.java)

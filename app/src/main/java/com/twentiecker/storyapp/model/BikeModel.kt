@@ -10,6 +10,7 @@ data class BikeModel(
     val photo: String,
     val energy: String,
     val rating: String,
-    val speed: String
+    val speed: String,
+    val isScanned: Boolean
 ) : Parcelable
 

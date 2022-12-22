@@ -24,6 +24,7 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
+import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.bike.BikeActivity
 import com.twentiecker.storyapp.databinding.ActivityScanBinding
 import com.twentiecker.storyapp.main.MainActivity
@@ -63,6 +64,7 @@ class ScanActivity : AppCompatActivity() {
         }
 
         scanViewModel.getBike().observe(this) { bike ->
+            Toast.makeText(this, bike.isScanned.toString(), Toast.LENGTH_SHORT).show()
             if (bike.name == "") {
                 binding.detailTextView.visibility  = View.INVISIBLE
                 binding.nameTextView.visibility = View.INVISIBLE
@@ -88,6 +90,11 @@ class ScanActivity : AppCompatActivity() {
                     show()
                 }
             } else {
+                if (bike.isScanned) {
+                    binding.tvOutput.text = "Unlocked"
+                    binding.tvOutput.setTextColor(Color.parseColor(getString(R.string.blue)))
+                    binding.imgOutput.setImageResource(R.drawable.ic_baseline_lock_open_24)
+                }
                 binding.detailTextView.visibility  = View.VISIBLE
                 binding.nameTextView.visibility = View.VISIBLE
                 binding.cnameTextView.visibility = View.VISIBLE
@@ -119,6 +126,7 @@ class ScanActivity : AppCompatActivity() {
 
             decodeCallback = DecodeCallback {
                 runOnUiThread {
+                    scanViewModel.scan()
                     binding.tvOutput.text = "Unlocked"
                     binding.tvOutput.setTextColor(Color.parseColor(getString(R.string.blue)))
                     binding.imgOutput.setImageResource(R.drawable.ic_baseline_lock_open_24)
