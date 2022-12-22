@@ -64,7 +64,6 @@ class ScanActivity : AppCompatActivity() {
         }
 
         scanViewModel.getBike().observe(this) { bike ->
-            Toast.makeText(this, bike.isScanned.toString(), Toast.LENGTH_SHORT).show()
             if (bike.name == "") {
                 binding.detailTextView.visibility  = View.INVISIBLE
                 binding.nameTextView.visibility = View.INVISIBLE
