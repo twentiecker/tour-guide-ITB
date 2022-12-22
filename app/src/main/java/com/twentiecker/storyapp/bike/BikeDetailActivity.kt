@@ -20,6 +20,7 @@ import com.twentiecker.storyapp.model.BikeModel
 import com.twentiecker.storyapp.databinding.ActivityDetailBikeBinding
 import com.twentiecker.storyapp.main.MainActivity
 import com.twentiecker.storyapp.model.UserPreference
+import com.twentiecker.storyapp.scanner.ScanActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -37,17 +38,32 @@ class BikeDetailActivity : AppCompatActivity() {
         val colorDrawable = ColorDrawable(Color.parseColor(getString(R.string.blue)))
         actionBar?.setBackgroundDrawable(colorDrawable)
 
+        setupViewModel()
         setupData()
 
         binding.btnRent.setOnClickListener {
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda telah berhasil melakukan pemesanan sepeda listrik. Silahkam masuk menu QR Code untuk membuka kunci sepeda.")
-                setPositiveButton("OK") { _, _ ->
-                    saveBikeData(bike)
-                }
-                create()
-                show()
+            bikeViewModel.getBike().observe(this) { bikePref ->
+                if (bikePref.name == "")
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Yeah!")
+                        setMessage("Anda telah berhasil melakukan pemesanan sepeda listrik. Silahkam masuk menu QR Code untuk membuka kunci sepeda.")
+                        setPositiveButton("OK") { _, _ ->
+                            saveBikeData(bike)
+                        }
+                        create()
+                        show()
+                    }
+                else
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Maaf.")
+                        setMessage("Satu pengguna hanya bisa menyewa satu sepeda listrik. Silahkan selesaikan masa sewa sepeda listrik terlebih dahulu sebelum melakukan sewa sepeda yang lain.")
+                        setPositiveButton("OK") { _, _ ->
+                            val intent = Intent(this@BikeDetailActivity, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        create()
+                        show()
+                    }
             }
         }
     }
@@ -64,14 +80,18 @@ class BikeDetailActivity : AppCompatActivity() {
         binding.speedTextView.text = bikeModel.speed
 
         bike = bikeModel
+
+        bikeViewModel.getUser().observe(this) { user ->
+            if (user.name == "Dr. Ir. Albarda, M.T.") {
+                binding.priceTextView.text = "Free"
+            } else {
+                binding.priceTextView.text = "Rp 10.000"
+            }
+        }
+
     }
 
     private fun saveBikeData(bikeData: BikeModel?) {
-        bikeViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[BikeViewModel::class.java]
-
         if (bikeData != null) {
             bikeViewModel.saveBike(
                 BikeModel(
@@ -89,5 +109,12 @@ class BikeDetailActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun setupViewModel() {
+        bikeViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[BikeViewModel::class.java]
     }
 }

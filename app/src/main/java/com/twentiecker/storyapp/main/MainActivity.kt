@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, PeduliActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
-                binding.nameTextView.text = getString(R.string.greeting, user.name)
+                binding.nameTextView.text = user.name
             } else {
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()

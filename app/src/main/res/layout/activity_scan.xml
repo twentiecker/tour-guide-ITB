@@ -24,15 +24,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/img_empty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_undraw_ride_a_bicycle_re_6tjy"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanner" />
+
     <TextView
         android:id="@+id/detailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="Detail Pemesanan"
         android:textColor="@color/black"
-        android:textSize="34sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:transitionName="name"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-black"
         android:text="Nama"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailTextView"
         app:layout_constraintTop_toBottomOf="@+id/detailTextView" />
 
@@ -55,7 +68,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="sans-serif"
         android:text="Someone Have Name"
         android:textColor="@color/blue"
         android:textSize="16sp"
@@ -68,10 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-black"
         android:text="User Id"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailTextView"
         app:layout_constraintTop_toBottomOf="@+id/cnameTextView" />
 
@@ -80,7 +92,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="sans-serif"
         android:text="12-abcdefg"
         android:textColor="@color/blue"
         android:textSize="16sp"
@@ -93,10 +104,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-black"
         android:text="Bike"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailTextView"
         app:layout_constraintTop_toBottomOf="@+id/cuserIdTextView" />
 
@@ -105,7 +116,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="sans-serif"
         android:text="Selis Butterfly"
         android:textColor="@color/blue"
         android:textSize="16sp"
@@ -118,10 +128,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-black"
         android:text="Duration"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/detailTextView"
         app:layout_constraintTop_toBottomOf="@+id/cbikeTextView" />
 
@@ -130,7 +140,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="sans-serif"
         android:text="2 Hours"
         android:textColor="@color/blue"
         android:textSize="16sp"
@@ -155,11 +164,10 @@
             android:id="@+id/tv_output"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-black"
+            android:layout_marginEnd="20dp"
             android:text="Locked"
-            android:textColor="@color/gray_700"
-            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 

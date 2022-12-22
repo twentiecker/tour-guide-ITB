@@ -51,6 +51,7 @@
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_map_24_menu.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_speed_24.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_baseline_star_rate_24.xml" value="0.2" />
@@ -60,25 +61,31 @@
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_journey_re_ec5q.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_male_avatar_re_8fid.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_polaroid_re_481f.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_ride_a_bicycle_re_6tjy.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_sign_in_re_o58h.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_tourist_map_re_293e.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/ic_undraw_welcoming_re_x0qo.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background1.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background2.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background_INA.xml" value="0.124" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background_black.xml" value="0.2" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background_blue.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/drawable/rounded_background_ina.xml" value="0.124" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_bike.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_bus.xml" value="0.22826086956521738" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_destiny.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_detail_bike.xml" value="0.22826086956521738" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_direction.xml" value="0.264" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_hero.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_list_story.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_main2.xml" value="0.22826086956521738" />
-        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_peduli.xml" value="0.5691318327974276" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_peduli.xml" value="0.176" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_peduli_detail.xml" value="0.4" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_register.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_scan.xml" value="0.2" />
+        <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_sso.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/activity_welcome.xml" value="0.22826086956521738" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/item_loading.xml" value="0.11197916666666667" />
         <entry key="..\:/L.E.A/Project/android/android-story-app/app/src/main/res/layout/item_row_bike.xml" value="0.22826086956521738" />

@@ -35,6 +35,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var edRegisterName: MyEditText
     private lateinit var edRegisterEmail: MyEditText
     private lateinit var edRegisterPassword: MyEditText
+    private var isEmail: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,9 +71,17 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
-                if (p0.isEmpty()) edRegisterEmail.error = "Masukkan email"
-                else if (!p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) edRegisterEmail.error =
-                    "Format email tidak sesuai"
+                if (p0.isEmpty()) {
+                    edRegisterEmail.error = "Masukkan email"
+                    isEmail = false
+                }
+                else if (p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+")) ||
+                    p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
+                ) isEmail = true
+                else {
+                    edRegisterEmail.error = "Format email tidak sesuai"
+                    isEmail = false
+                }
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -208,6 +217,6 @@ class RegisterActivity : AppCompatActivity() {
             .isNotEmpty() && email != null && email.toString()
             .isNotEmpty() && pass != null && pass.toString()
             .isNotEmpty() && edRegisterPassword.length() > 5
-                && email.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
+                && isEmail
     }
 }

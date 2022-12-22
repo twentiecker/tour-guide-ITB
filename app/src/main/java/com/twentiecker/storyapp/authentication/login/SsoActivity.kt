@@ -17,7 +17,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.twentiecker.storyapp.main.MainActivity
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.ViewModelFactory
 import com.twentiecker.storyapp.api.ApiResult
@@ -25,25 +24,25 @@ import com.twentiecker.storyapp.authentication.register.RegisterActivity
 import com.twentiecker.storyapp.custom.MyButton
 import com.twentiecker.storyapp.custom.MyEditText
 import com.twentiecker.storyapp.databinding.ActivityLoginBinding
+import com.twentiecker.storyapp.databinding.ActivitySsoBinding
+import com.twentiecker.storyapp.main.MainActivity
 import com.twentiecker.storyapp.model.DataItem
 import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-class LoginActivity : AppCompatActivity() {
+class SsoActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: ActivitySsoBinding
     private lateinit var user: UserModel
     private lateinit var myButton: MyButton
     private lateinit var edLoginEmail: MyEditText
     private lateinit var edLoginPassword: MyEditText
-    private var isEmail: Boolean = false
-    private var email: String = "something@not.true"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivitySsoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
@@ -61,17 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
                 setMyButtonEnable()
-                if (p0.isEmpty()) {
-                    edLoginEmail.error = "Masukkan email"
-                    isEmail = false
-                }
-                else if (p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+")) ||
-                    p0.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
-                ) isEmail = true
-                else {
-                    edLoginEmail.error = "Format email tidak sesuai"
-                    isEmail = false
-                }
+                if (p0.isEmpty()) edLoginEmail.error = "Masukkan username"
             }
 
             override fun afterTextChanged(p0: Editable) {
@@ -91,11 +80,6 @@ class LoginActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable) {
             }
         })
-
-        binding.btnSso.setOnClickListener {
-            val intent = Intent(this@LoginActivity, SsoActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupView() {
@@ -123,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showUserData(userData: DataItem?) {
         if (userData != null) {
             loginViewModel.saveUser(UserModel(userData.userId, userData.name, userData.token, true))
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            val intent = Intent(this@SsoActivity, MainActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
@@ -135,9 +119,7 @@ class LoginActivity : AppCompatActivity() {
         binding.myButton.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
 
-            email = binding.edLoginEmail.text.toString()
-            val check = "itb.ac.id"
-            if (check in email) email = "something@not.true"
+            val email = binding.edLoginEmail.text.toString() + "@itb.ac.id"
             val password = binding.edLoginPassword.text.toString()
 
             loginViewModel.loginService(email, password).observe(this) { loginResult ->
@@ -156,11 +138,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-
-        binding.messageRegister.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun playAnimation() {
@@ -172,8 +149,6 @@ class LoginActivity : AppCompatActivity() {
 
         val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
         val imgLogin = ObjectAnimator.ofFloat(binding.imageLogin, View.ALPHA, 1f).setDuration(500)
-        val msgIna = ObjectAnimator.ofFloat(binding.messageIna, View.ALPHA, 1f).setDuration(500)
-        val btnIna = ObjectAnimator.ofFloat(binding.btnSso, View.ALPHA, 1f).setDuration(500)
         val emailEditTextLayout =
             ObjectAnimator.ofFloat(binding.edLoginEmail, View.ALPHA, 1f).setDuration(500)
         val imgPassword =
@@ -181,9 +156,6 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditTextLayout =
             ObjectAnimator.ofFloat(binding.edLoginPassword, View.ALPHA, 1f).setDuration(500)
         val buttonLogin = ObjectAnimator.ofFloat(binding.myButton, View.ALPHA, 1f).setDuration(500)
-        val message =
-            ObjectAnimator.ofFloat(binding.linearMessage, View.ALPHA, 1f).setDuration(500)
-
         val setEmail = AnimatorSet().apply {
             playTogether(imgLogin, emailEditTextLayout)
         }
@@ -195,12 +167,9 @@ class LoginActivity : AppCompatActivity() {
         AnimatorSet().apply {
             playSequentially(
                 title,
-                msgIna,
-                btnIna,
                 setEmail,
                 setPassword,
-                buttonLogin,
-                message
+                buttonLogin
             )
             startDelay = 500
         }.start()
@@ -212,6 +181,5 @@ class LoginActivity : AppCompatActivity() {
         myButton.isEnabled = email != null && email.toString()
             .isNotEmpty() && pass != null && pass.toString()
             .isNotEmpty() && edLoginPassword.length() > 5
-                && isEmail
     }
 }
