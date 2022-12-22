@@ -26,10 +26,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CircleOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.databinding.ActivityDirectionBinding
 
@@ -83,6 +80,9 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
 
         val stanford = LatLng(centerLat, centerLng)
         mMap.addMarker(MarkerOptions().position(stanford).title(getString(R.string.campus)))
@@ -95,6 +95,16 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
                 .strokeColor(Color.RED)
                 .strokeWidth(3f)
         )
+
+        mMap.setOnPoiClickListener { pointOfInterest ->
+            val poiMarker = mMap.addMarker(
+                MarkerOptions()
+                    .position(pointOfInterest.latLng)
+                    .title(pointOfInterest.name)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+            )
+            poiMarker?.showInfoWindow()
+        }
 
         getMyLocation()
         addGeofence()
@@ -112,8 +122,8 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
                 geofenceRadius.toFloat()
             )
             .setExpirationDuration(Geofence.NEVER_EXPIRE)
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_DWELL or Geofence.GEOFENCE_TRANSITION_ENTER)
-            .setLoiteringDelay(1000)
+            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_DWELL or Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
+            .setLoiteringDelay(3000)
             .build()
         val geofencingRequest = GeofencingRequest.Builder()
             .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
@@ -134,7 +144,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun showToast(text: String) {
-        Toast.makeText(this@DirectionActivity, text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@DirectionActivity, text, Toast.LENGTH_LONG).show()
     }
 
     private val requestBackgroundLocationPermissionLauncher =
@@ -147,6 +157,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
     private val runningQOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+
     @TargetApi(Build.VERSION_CODES.Q)
     private val requestLocationPermissionLauncher =
         registerForActivityResult(
@@ -166,6 +177,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
             permission
         ) == PackageManager.PERMISSION_GRANTED
     }
+
     @TargetApi(Build.VERSION_CODES.Q)
     private fun checkForegroundAndBackgroundLocationPermission(): Boolean {
         val foregroundLocationApproved = checkPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -177,6 +189,7 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         return foregroundLocationApproved && backgroundPermissionApproved
     }
+
     @SuppressLint("MissingPermission")
     private fun getMyLocation() {
         if (checkForegroundAndBackgroundLocationPermission()) {

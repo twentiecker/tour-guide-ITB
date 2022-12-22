@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.twentiecker.storyapp.addstory.AddStoryViewModel
 import com.twentiecker.storyapp.authentication.login.LoginViewModel
 import com.twentiecker.storyapp.authentication.register.RegisterViewModel
+import com.twentiecker.storyapp.bike.BikeViewModel
 import com.twentiecker.storyapp.di.Injection
 import com.twentiecker.storyapp.liststory.ListStoryViewModel
 import com.twentiecker.storyapp.main.MainViewModel
 import com.twentiecker.storyapp.maps.MapsViewModel
 import com.twentiecker.storyapp.model.UserPreference
+import com.twentiecker.storyapp.scanner.ScanViewModel
 
 class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.NewInstanceFactory() {
 
@@ -33,6 +35,12 @@ class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.New
             }
             modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
                 MapsViewModel(pref, Injection.mapsRepository()) as T
+            }
+            modelClass.isAssignableFrom(ScanViewModel::class.java) -> {
+                ScanViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(BikeViewModel::class.java) -> {
+                BikeViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

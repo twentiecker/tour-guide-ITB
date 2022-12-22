@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.bike.adapter.ListBikeAdapter
-import com.twentiecker.storyapp.bike.model.Bike
+import com.twentiecker.storyapp.model.BikeModel
 import java.util.ArrayList
 
 class BikeActivity : AppCompatActivity() {
     private lateinit var rvHeroes: RecyclerView
-    private val list = ArrayList<Bike>()
+    private val list = ArrayList<BikeModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class BikeActivity : AppCompatActivity() {
         rvHeroes = findViewById(R.id.rv_heroes)
         rvHeroes.setHasFixedSize(true)
 
-        list.addAll(listBikes)
+        list.addAll(listBikeModels)
         showRecyclerList()
     }
 
@@ -43,7 +43,7 @@ class BikeActivity : AppCompatActivity() {
         rvHeroes.adapter = listBikeAdapter
     }
 
-    private val listBikes: ArrayList<Bike>
+    private val listBikeModels: ArrayList<BikeModel>
         get() {
             val dataName = resources.getStringArray(R.array.data_name)
             val dataDescription = resources.getStringArray(R.array.data_description)
@@ -51,11 +51,11 @@ class BikeActivity : AppCompatActivity() {
             val dataEnergy = resources.getStringArray(R.array.data_energy)
             val dataRating = resources.getStringArray(R.array.data_rating)
             val dataSpeed = resources.getStringArray(R.array.data_speed)
-            val listBikes = ArrayList<Bike>()
+            val listBikeModels = ArrayList<BikeModel>()
             for (i in dataName.indices) {
-                val bike = Bike(dataName[i], dataDescription[i], dataPhoto[i], dataEnergy[i], dataRating[i], dataSpeed[i])
-                listBikes.add(bike)
+                val bikeModel = BikeModel(dataName[i], dataDescription[i], dataPhoto[i], dataEnergy[i], dataRating[i], dataSpeed[i])
+                listBikeModels.add(bikeModel)
             }
-            return listBikes
+            return listBikeModels
         }
 }

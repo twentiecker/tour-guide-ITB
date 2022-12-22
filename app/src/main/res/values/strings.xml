@@ -53,7 +53,7 @@
     <string name="let_s">Let\'s</string>
     <string name="xplore">Xplore</string>
     <string name="itb">ITB</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Shuttle Bus</string>
     <string name="blue">#229bd8</string>
     <string name="add_review">Add Review</string>
     <string name="rating">4.5 (1,249)</string>
@@ -63,8 +63,14 @@
     <string name="speed">42</string>
     <string name="price">Rp 10.000</string>
     <string name="peduli">PeduliLindungi</string>
+    <string name="start_running">Start Running</string>
+    <string name="stop_running">Stop Running</string>
+    <string name="start_point">Start Point</string>
     <string-array name="data_name">
+        <item>UWINFLY Dragonfly Alt Fiido</item>
+        <item>Fiido D4S Folding Electric Bike</item>
         <item>Indobike</item>
+        <item>Selis Murai</item>
         <item>Selis Butterfly</item>
         <item>Super Rider Mars</item>
         <item>Super Rider Earth</item>
@@ -74,6 +80,9 @@
     </string-array>
     <string-array name="data_energy">
         <item>350 Watt</item>
+        <item>350 Watt</item>
+        <item>350 Watt</item>
+        <item>500 Watt</item>
         <item>500 Watt</item>
         <item>350 Watt</item>
         <item>350 Watt</item>
@@ -82,8 +91,11 @@
         <item>500 Watt</item>
     </string-array>
     <string-array name="data_rating">
+        <item>4.8 (61)</item>
+        <item>4.6 (161)</item>
         <item>4.7 (321)</item>
         <item>4.6 (102)</item>
+        <item>4.9 (35)</item>
         <item>4.5 (213)</item>
         <item>4.7 (300)</item>
         <item>4.9 (30)</item>
@@ -91,7 +103,10 @@
         <item>4.7 (224)</item>
     </string-array>
     <string-array name="data_speed">
+        <item>35 km/jam</item>
+        <item>30 km/jam</item>
         <item>40 km/jam</item>
+        <item>35 km/jam</item>
         <item>25 km/jam</item>
         <item>28 km/jam</item>
         <item>35 km/jam</item>
@@ -100,7 +115,10 @@
         <item>50 km/jam</item>
     </string-array>
     <string-array name="data_description">
+        <item>UWINFLY Dragonfly Alt Fiido adalah sepede listrik yang memiliki desain modern dengan material ringan, tapi sangat kokoh. Toppers dapat mengenderai sepeda listrik ini dengan nyaman karena memiliki pijakan kaki yang cukup luas serta sandaran belakang untuk penumpang. Sepeda listrik UWINFLY ini diberkati dengan baterai 48V/12AH dengan jarak tempuh kurang lebih 40 km. Selain itu, sepeda ini dapat melaju dengan kecepatan kurang lebih 30 km/jam.</item>
+        <item>Fiido D4S Folding Electric Bike adalah sepeda listrik dengan baterai 10.4AH dengan jarak tempuh 40 – 60 km sekali penggunaan baterai. Sepeda listrik ini cocok untuk anak muda yang ingin berkendara ramah lingkungan. Selain itu, Sepeda merk Fiido ini juga memiliki fitur display LCD dan gear lengkap dari Shimano dan KMC Variable Speed Chain. Dengan kualitas rangka badan yang kuat tersebut sepeda listrik ini mampu membawa beban hingga 120 kg.</item>
         <item>Indobike yang dibuat oleh PT Eco Tumbuh Sejahtera memiliki kekuatan dinamo sebesar 350-500 Watt dan kekuatan dinamo sebesar 480 volt 12 Ah. Sepeda ini pun dapat menempuh kecepatan hingga 40 km/jam. Indobike juga memberikan fitur alarm anti maling yang akan membuatmu lebih tenang jika diparkir di pasar atau tempat sejenis lainnya. Selain itu, ban dari Indobike ini sudah tubeless lho, jadi lebih tangguh dan tidak mudah kempes.</item>
+        <item>Dengan desain yang mirip dengan Selis Butterfly, Selis Murai justru memiliki spesifikasi yang mirip dengan Selis Eagle. Selis Murai memiliki kapasitas baterai sebesar 48 volt 12 Ah dengan kekuatan motor sebesar 500 watt. Bahkan kecepatan maksimal yang dapat dihasilkan pun sama, yaitu 35 km/jam.</item>
         <item>Selis Butterfly sudah menggunakan ban tubeless. Sepeda ini memiliki daya baterai sebesar 36 volt 12 Ah dengan kekuatan 500 watt. Sepeda listrik murah ini pun sudah dilengkapi dengan teknologi power assistant.Sehingga ketika menggowes kamu akan terbantu oleh energi yang dihasilkan power assistant ini, dengan begitu kamu tidak akan terlalu capek dan baterai pun akan lebih hemat. Selis Butterfly mampu menempuh kecepatan hingga 25 km/jam.</item>
         <item>Sepeda listrik ini hanya memiliki kapasitas bateri sebesar 36 Volt 11 Ah dengan kekuatan listik yang mencapai 350 watt. Kecepatan maksimal yang dapat dihasilkan saja hanya sebesar 28 km/jam. Desain dari Super Rider Mars ini dapat dibilang mirip dengan desain sepeda lipat.</item>
         <item>Super Rider Earth memiliki spesifikasi dengan kapasitas baterai 48 volt 12 Ah. Ia memiliki jarak tempuh mencapai 40 km, dan kecepatan maksimumnya adalah 35 km/jam. Ada fitur menarik dari sepeda ini, yaitu fitur remote key-nya. Pada remote key-nya terdapat fitur answer back system, sehingga jika kamu lupa menaruh sepadamu di mana, dengan mudah kamu bisa menemukannya.</item>
@@ -109,12 +127,16 @@
         <item>Xiaomi QiCycle memiliki bentuk kerangka sepeda lipat yang unik dan kokoh. Bentuk bodinya yang horizontal membuat sepeda lipat besutan Xiaomi ini begitu khas. Terkait performanya, kamu tidak perlu ragu lagi. Pokoknya, sepeda listrik lipat ini dapat menjadi andalan kapan pun dibutuhkan.</item>
     </string-array>
     <string-array name="data_photo">
-        <item>https://upload.wikimedia.org/wikipedia/commons/b/b0/Indobike_Bike.jpg?20221216220546</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/4/49/Selis_Bike.jpg?20221216220618</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/0/07/Super_rider_mars.jpg?20221216220548</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/5/59/Super_rider_earth.jpg?20221216220548</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/6/6e/United_miles.jpg?20221216220549</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/7/73/Viar_Bike.jpg?20221216220551</item>
-        <item>https://upload.wikimedia.org/wikipedia/commons/4/47/Xiaomi_Bike.jpg?20221216220619</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/89a1dd17-9c7d-4648-b618-21b66f22e162.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/d273f5c5-1980-48ea-86c3-a35360825b6f.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/51212c36-5570-481e-9e23-641df20bd3ce.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/50b16089-82d6-4e66-8e3c-eb5864ef204d.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/a805426b-e348-4124-ac9f-bbc5bf92a3ae.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/05133ebe-9dc3-4fd5-bbfb-d6338734555d.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/fab79b3c-2263-4a71-bbe7-41fc946ee4f8.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/8485b48b-b6e6-446e-9b5d-db83072e55fb.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/0d66c855-71f2-476c-8928-49c6a41cf2b3.jpg</item>
+        <item>https://images.tokopedia.net/img/JFrBQq/2022/9/16/354cdf48-2826-4313-a7d2-0f8d6e592823.jpg</item>
     </string-array>
+    <string name="title_activity_bus">BusActivity</string>
 </resources>

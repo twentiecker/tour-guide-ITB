@@ -8,7 +8,7 @@ import com.twentiecker.storyapp.model.UserModel
 import com.twentiecker.storyapp.model.UserPreference
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val pref: UserPreference):ViewModel() {
+class MainViewModel(private val pref: UserPreference) : ViewModel() {
     fun getUser(): LiveData<UserModel> {
         return pref.getUser().asLiveData()
     }

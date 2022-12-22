@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.bike.BikeDetailActivity
-import com.twentiecker.storyapp.bike.model.Bike
+import com.twentiecker.storyapp.model.BikeModel
 
-class ListBikeAdapter(private val listBikes: ArrayList<Bike>) : RecyclerView.Adapter<ListBikeAdapter.ListViewHolder>() {
+class ListBikeAdapter(private val listBikeModels: ArrayList<BikeModel>) : RecyclerView.Adapter<ListBikeAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_bike, parent, false)
@@ -23,26 +23,26 @@ class ListBikeAdapter(private val listBikes: ArrayList<Bike>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(listBikes[position])
+        holder.bind(listBikeModels[position])
     }
 
-    override fun getItemCount(): Int = listBikes.size
+    override fun getItemCount(): Int = listBikeModels.size
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var imgPhoto: ImageView = itemView.findViewById(R.id.profileImageView)
         private var tvName: TextView = itemView.findViewById(R.id.nameTextView)
         private var tvDescription: TextView = itemView.findViewById(R.id.descTextView)
 
-        fun bind(bike: Bike) {
+        fun bind(bikeModel: BikeModel) {
             Glide.with(itemView.context)
-                .load(bike.photo)
+                .load(bikeModel.photo)
                 .into(imgPhoto)
-            tvName.text = bike.name
-            tvDescription.text = bike.description
+            tvName.text = bikeModel.name
+            tvDescription.text = bikeModel.description
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, BikeDetailActivity::class.java)
-                intent.putExtra("Hero", bike)
+                intent.putExtra("Hero", bikeModel)
 
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(

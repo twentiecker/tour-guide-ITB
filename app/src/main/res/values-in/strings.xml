@@ -54,7 +54,7 @@
     <string name="let_s">Mari</string>
     <string name="xplore">Menjelajah</string>
     <string name="itb">ITB</string>
-    <string name="favorite">Favorit</string>
+    <string name="favorite">Minibus</string>
     <string name="blue">#229bd8</string>
     <string name="add_review">Tambah Ulasan</string>
     <string name="rating">4.5 (1,249)</string>
@@ -63,4 +63,9 @@
     <string name="store">Toko Rental ITB</string>
     <string name="speed">42</string>
     <string name="price">Rp 10.000</string>
+    <string name="peduli">PeduliLindungi</string>
+    <string name="start_running">Start Running</string>
+    <string name="stop_running">Stop Running</string>
+    <string name="start_point">Start Point</string>
+    <string name="title_activity_bus">BusActivity</string>
 </resources>

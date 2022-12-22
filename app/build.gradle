@@ -23,10 +23,12 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\""
+//            resValue "string", "MAPS_API_KEY", "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"
             manifestPlaceholders = [MAPS_API_KEY: "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"]
         }
         release {
             buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\""
+//            resValue "string", "MAPS_API_KEY", "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"
             manifestPlaceholders = [MAPS_API_KEY: "AIzaSyAa4Qh5Fx3vRG7T0nAHhbSzGqBEoUO3VqE"]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

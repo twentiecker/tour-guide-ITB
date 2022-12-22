@@ -5,7 +5,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.twentiecker.storyapp.bike.model.Bike
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -22,6 +21,19 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    fun getBike(): Flow<BikeModel> {
+        return dataStore.data.map { preferences ->
+            BikeModel(
+                preferences[NAME] ?: "",
+                preferences[DESCRIPTION] ?: "",
+                preferences[PHOTO] ?: "",
+                preferences[ENERGY] ?: "",
+                preferences[RATING] ?: "",
+                preferences[SPEED] ?: "",
+            )
+        }
+    }
+
     suspend fun saveUser(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[USERID_KEY] = user.userId
@@ -31,9 +43,14 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    suspend fun saveBike(bike: Bike) {
+    suspend fun saveBike(bikeModel: BikeModel) {
         dataStore.edit { preferences ->
-            preferences[NAME] = bike.name
+            preferences[NAME] = bikeModel.name
+            preferences[DESCRIPTION] = bikeModel.description
+            preferences[ENERGY] = bikeModel.energy
+            preferences[PHOTO] = bikeModel.photo
+            preferences[RATING] = bikeModel.rating
+            preferences[SPEED] = bikeModel.speed
         }
     }
 
@@ -57,7 +74,13 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val STATE_KEY = booleanPreferencesKey("state")
+
         private val NAME = stringPreferencesKey("bike_name")
+        private val DESCRIPTION = stringPreferencesKey("description")
+        private val ENERGY = stringPreferencesKey("energy")
+        private val PHOTO = stringPreferencesKey("photo")
+        private val RATING = stringPreferencesKey("rating")
+        private val SPEED = stringPreferencesKey("speed")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {
