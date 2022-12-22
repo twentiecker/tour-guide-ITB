@@ -14,6 +14,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.twentiecker.storyapp.BusActivity
 import com.twentiecker.storyapp.R
 import com.twentiecker.storyapp.scanner.ScanActivity
 import com.twentiecker.storyapp.ViewModelFactory
@@ -64,6 +65,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.cvPeduli.setOnClickListener {
             val intent = Intent(this@MainActivity, PeduliActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvBus.setOnClickListener {
+            val intent = Intent(this@MainActivity, BusActivity::class.java)
             startActivity(intent)
         }
 

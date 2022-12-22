@@ -84,12 +84,12 @@ class DirectionActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        val stanford = LatLng(centerLat, centerLng)
-        mMap.addMarker(MarkerOptions().position(stanford).title(getString(R.string.campus)))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(stanford, 15f))
+        val itb = LatLng(centerLat, centerLng)
+        mMap.addMarker(MarkerOptions().position(itb).title(getString(R.string.campus)))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(itb, 15f))
         mMap.addCircle(
             CircleOptions()
-                .center(stanford)
+                .center(itb)
                 .radius(geofenceRadius)
                 .fillColor(0x22FF0000)
                 .strokeColor(Color.RED)
